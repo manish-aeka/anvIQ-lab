@@ -9,7 +9,7 @@
  *   3. Defaults to 0
  */
 
-(function initAnimations() {
+document.addEventListener('DOMContentLoaded', function initAnimations() {
 
   /* ====================================================
      SCROLL REVEAL — .reveal-element
@@ -104,4 +104,4 @@
     platformObserver.observe(platformCard);
   }
 
-})();
+});

@@ -83,25 +83,25 @@
         <!-- Logo -->
         <a href="#home" class="flex items-center gap-2.5 group" aria-label="AnvIQ Labs Home">
           <div class="logo-mark">
-            <span>A</span>
+            <span data-bind="textContent.nav.logoMark"></span>
           </div>
           <span class="font-display font-semibold text-lg tracking-tight text-slate-900">
-            AnvIQ <span class="text-brand-600">Labs</span>
+            <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-600" data-bind="textContent.nav.logoP2"></span>
           </span>
         </a>
 
         <!-- Desktop Nav Links -->
         <div class="hidden md:flex items-center gap-1" role="menubar">
-          <a href="#about"        class="nav-link" role="menuitem">About</a>
-          <a href="#capabilities" class="nav-link" role="menuitem">Capabilities</a>
-          <a href="#industries"   class="nav-link" role="menuitem">Industries</a>
-          <a href="#research"     class="nav-link" role="menuitem">Research</a>
-          <a href="#contact"      class="nav-link" role="menuitem">Contact</a>
+          <a href="#about"        class="nav-link" role="menuitem" data-bind="textContent.nav.links.0.text"></a>
+          <a href="#capabilities" class="nav-link" role="menuitem" data-bind="textContent.nav.links.1.text"></a>
+          <a href="#industries"   class="nav-link" role="menuitem" data-bind="textContent.nav.links.2.text"></a>
+          <a href="#research"     class="nav-link" role="menuitem" data-bind="textContent.nav.links.3.text"></a>
+          <a href="#contact"      class="nav-link" role="menuitem" data-bind="textContent.nav.links.4.text"></a>
         </div>
 
         <!-- CTA -->
         <div class="hidden md:flex items-center gap-3">
-          <a href="#contact" class="btn-primary text-sm px-5 py-2.5">Get in Touch</a>
+          <a href="#contact" class="btn-primary text-sm px-5 py-2.5" data-bind="textContent.nav.cta"></a>
         </div>
 
         <!-- Hamburger -->
@@ -114,13 +114,13 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white/98 backdrop-blur-xl shadow-lg" role="menu">
       <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
-        <a href="#about"        class="mobile-nav-link" role="menuitem">About</a>
-        <a href="#capabilities" class="mobile-nav-link" role="menuitem">Capabilities</a>
-        <a href="#industries"   class="mobile-nav-link" role="menuitem">Industries</a>
-        <a href="#research"     class="mobile-nav-link" role="menuitem">Research</a>
-        <a href="#contact"      class="mobile-nav-link" role="menuitem">Contact</a>
+        <a href="#about"        class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.0.text"></a>
+        <a href="#capabilities" class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.1.text"></a>
+        <a href="#industries"   class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.2.text"></a>
+        <a href="#research"     class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.3.text"></a>
+        <a href="#contact"      class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.4.text"></a>
         <div class="pt-3 pb-1 border-t border-slate-100 mt-1">
-          <a href="#contact" class="btn-primary text-sm w-full text-center block py-2.5">Get in Touch</a>
+          <a href="#contact" class="btn-primary w-full text-center block py-2.5" data-bind="textContent.nav.cta"></a>
         </div>
       </div>
     </div>
@@ -144,44 +144,39 @@
             <!-- Overline -->
             <div class="section-overline justify-center lg:justify-start mb-7">
               <span class="w-5 h-px bg-sky-500"></span>
-              <span>AI Research &amp; Product Company</span>
+              <span data-bind="textContent.hero.overline"></span>
             </div>
 
             <h1 class="font-display font-bold text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.1] tracking-tight text-slate-900 mb-6">
-              Building Intelligent<br />
-              <span class="accent-text">Products</span> from<br />
-              Proprietary Data
+              <span data-bind="textContent.hero.headlineP1"></span><br />
+              <span class="accent-text" data-bind="textContent.hero.headlineAccent"></span> <span data-bind="textContent.hero.headlineP2"></span>
             </h1>
 
-            <p class="text-slate-600 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10">
-              AnvIQ Labs transforms complex private datasets into scalable, high-performance AI products &mdash; through rigorous research, custom ML architecture, and applied data science.
-            </p>
+            <p class="text-slate-600 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10" data-bind="textContent.hero.description"></p>
 
             <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <a href="#capabilities" class="btn-primary px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 group w-full sm:w-auto">
-                Explore Solutions
+                <span data-bind="textContent.hero.btnPrimary"></span>
                 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"></i>
               </a>
-              <a href="#contact" class="btn-ghost px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto">
-                Contact Us
-              </a>
+              <a href="#contact" class="btn-ghost px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto" data-bind="textContent.hero.btnGhost"></a>
             </div>
 
             <!-- Micro stats -->
             <div class="mt-14 pt-8 border-t border-slate-200 flex flex-wrap gap-8 justify-center lg:justify-start">
               <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums">50+</div>
-                <div class="text-xs text-slate-500 mt-0.5 tracking-wide">AI Models Built</div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.0.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.0.label"></div>
               </div>
               <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
               <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums">3+</div>
-              <div class="text-xs text-slate-500 mt-0.5 tracking-wide">Industries Served</div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.1.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.1.label"></div>
               </div>
               <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
               <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums">100%</div>
-              <div class="text-xs text-slate-500 mt-0.5 tracking-wide">Research-Driven</div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.2.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.2.label"></div>
               </div>
             </div>
           </div>
@@ -284,43 +279,12 @@
               <span class="w-5 h-px bg-sky-500"></span>
               <span>About Us</span>
             </div>
-            <h2 class="section-title mb-6">Intelligence Engineered<br />for Business</h2>
-            <p class="text-slate-700 text-lg leading-relaxed mb-5">
-              AnvIQ Labs is a <span class="text-brand-600 font-semibold">research-driven AI technology company</span> focused on building intelligent software products that help businesses make smarter decisions and deliver better customer experiences.
-            </p>
-            <p class="text-slate-500 leading-relaxed mb-10">
-              By combining Artificial Intelligence, Machine Learning, data science, and scalable engineering, we develop advanced digital solutions tailored for industries such as real estate, retail, and consumer businesses &mdash; transforming complex data into actionable business intelligence.
-            </p>
+            <h2 class="section-title mb-6" data-bind="textContent.about.title"></h2>
+            <p class="text-slate-700 text-lg leading-relaxed mb-5" data-bind="textContent.about.p1"></p>
+            <p class="text-slate-500 leading-relaxed mb-10" data-bind="textContent.about.p2"></p>
 
-            <ul class="space-y-4">
-              <li class="principle-item">
-                <div class="principle-num">01</div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900 mb-0.5">Research-First Methodology</div>
-                  <div class="text-sm text-slate-500">Experimental AI and statistical validation before every product decision.</div>
-                </div>
-              </li>
-              <li class="principle-item">
-                <div class="principle-num">02</div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900 mb-0.5">Proprietary Intelligence Systems</div>
-                  <div class="text-sm text-slate-500">Custom IP and algorithms &mdash; never generic, off-the-shelf implementations.</div>
-                </div>
-              </li>
-              <li class="principle-item">
-                <div class="principle-num">03</div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900 mb-0.5">End-to-End Product Engineering</div>
-                  <div class="text-sm text-slate-500">We own the full lifecycle &mdash; from research and model architecture to deployment.</div>
-                </div>
-              </li>
-              <li class="principle-item">
-                <div class="principle-num">04</div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900 mb-0.5">Data Sovereignty &amp; Security</div>
-                  <div class="text-sm text-slate-500">Secure AI pipelines with enterprise-grade data integrity throughout.</div>
-                </div>
-              </li>
+            <ul class="space-y-4" id="principles-container">
+              <!-- principles dynamically rendered here -->
             </ul>
           </div>
 
@@ -364,69 +328,13 @@
               <span class="w-5 h-px bg-sky-500"></span>
               <span>Core Capabilities</span>
             </div>
-            <h2 class="section-title">Precision-Built<br />AI Solutions</h2>
+            <h2 class="section-title" data-bind="textContent.capabilities.title"></h2>
           </div>
-          <p class="text-slate-500 text-base leading-relaxed max-w-sm lg:text-right">
-            Six interconnected domains forming a full-spectrum intelligence suite for modern enterprises.
-          </p>
+          <p class="text-slate-500 text-base leading-relaxed max-w-sm lg:text-right" data-bind="textContent.capabilities.description"></p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-          <div class="capability-card reveal-element">
-            <div class="cap-icon"><i data-lucide="brain-circuit" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">Custom LLM Solutions</h3>
-            <p class="capability-desc">Fine-tuning and optimizing Large Language Models on your private datasets, delivering domain-specific AI assistants with high-context, hallucination-free outputs tailored to your industry.</p>
-            <div class="capability-tags">
-              <span class="tag">RAG Systems</span><span class="tag">Fine-tuning</span><span class="tag">Knowledge Intelligence</span>
-            </div>
-          </div>
-
-          <div class="capability-card reveal-element" data-delay="0.08">
-            <div class="cap-icon"><i data-lucide="cpu" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">Machine Learning Systems</h3>
-            <p class="capability-desc">Bespoke ML architectures designed, trained, and deployed specifically for your unique data constraints and business objectives &mdash; avoiding generic implementations entirely.</p>
-            <div class="capability-tags">
-              <span class="tag">Custom Architecture</span><span class="tag">Predictive Models</span><span class="tag">Classification</span>
-            </div>
-          </div>
-
-          <div class="capability-card reveal-element" data-delay="0.16">
-            <div class="cap-icon"><i data-lucide="bar-chart-3" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">Data Science &amp; Analytics</h3>
-            <p class="capability-desc">Deep statistical analysis and exploratory data research to uncover the "why" behind numbers. We provide the mathematical foundation for every intelligent product we engineer.</p>
-            <div class="capability-tags">
-              <span class="tag">Statistical Research</span><span class="tag">EDA</span><span class="tag">Validation</span>
-            </div>
-          </div>
-
-          <div class="capability-card reveal-element" data-delay="0.24">
-            <div class="cap-icon"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">Predictive Intelligence</h3>
-            <p class="capability-desc">Advanced forecasting systems, recommendation engines, and decision intelligence platforms that help businesses anticipate outcomes and act with confidence in dynamic environments.</p>
-            <div class="capability-tags">
-              <span class="tag">Forecasting</span><span class="tag">Recommendations</span><span class="tag">Decision AI</span>
-            </div>
-          </div>
-
-          <div class="capability-card reveal-element" data-delay="0.32">
-            <div class="cap-icon"><i data-lucide="layers" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">Scalable Digital Platforms</h3>
-            <p class="capability-desc">End-to-end technology platforms and proprietary SaaS products that integrate into existing workflows, turning complex models into intuitive, enterprise-grade intelligent tools.</p>
-            <div class="capability-tags">
-              <span class="tag">SaaS Products</span><span class="tag">API Integration</span><span class="tag">Enterprise Tools</span>
-            </div>
-          </div>
-
-          <div class="capability-card reveal-element" data-delay="0.4">
-            <div class="cap-icon"><i data-lucide="flask-conical" class="w-5 h-5"></i></div>
-            <h3 class="capability-title">AI Research &amp; Innovation</h3>
-            <p class="capability-desc">Cutting-edge experimental AI systems, methodology innovation, and proprietary intelligence research that continuously advances our technical foundations and product capabilities.</p>
-            <div class="capability-tags">
-              <span class="tag">Experimental AI</span><span class="tag">R&amp;D</span><span class="tag">Novel Architectures</span>
-            </div>
-          </div>
-
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="capabilities-container">
+          <!-- Capabilities dynamically rendered here -->
         </div>
       </div>
     </section>
@@ -440,68 +348,12 @@
             <span class="w-5 h-px bg-sky-500"></span>
             <span>Industries</span>
           </div>
-          <h2 class="section-title mb-3">Built for Real-World Impact</h2>
-          <p class="text-slate-500 text-base max-w-xl mx-auto">
-            Our intelligent products are architected for sectors where data-driven decisions carry the highest strategic value.
-          </p>
+          <h2 class="section-title mb-3" data-bind="textContent.industries.title"></h2>
+          <p class="text-slate-500 text-base max-w-xl mx-auto" data-bind="textContent.industries.description"></p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-          <div class="industry-card reveal-element">
-            <div class="industry-icon-wrap">
-              <i data-lucide="building-2" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Real Estate</h3>
-            <p class="industry-desc">Intelligent property valuation, demand forecasting, market trend analysis, and AI-powered lead intelligence for real estate platforms.</p>
-            <a href="#contact" class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
-          </div>
-
-          <div class="industry-card reveal-element" data-delay="0.08">
-            <div class="industry-icon-wrap">
-              <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Retail</h3>
-            <p class="industry-desc">Personalized recommendation engines, inventory optimization, customer behavior prediction, and demand planning systems for retail businesses.</p>
-            <a href="#contact" class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
-          </div>
-
-          <div class="industry-card reveal-element" data-delay="0.16">
-            <div class="industry-icon-wrap">
-              <i data-lucide="users" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Consumer Businesses</h3>
-            <p class="industry-desc">AI-driven customer experience platforms, sentiment analysis, churn prediction, and engagement optimization built for consumer-facing operations.</p>
-            <a href="#contact" class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
-          </div>
-
-          <div class="industry-card reveal-element" data-delay="0.24">
-            <div class="industry-icon-wrap">
-              <i data-lucide="factory" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Enterprise Operations</h3>
-            <p class="industry-desc">Workflow automation, operational intelligence, process optimization, and decision-support systems for complex enterprise environments.</p>
-            <a href="#contact" class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
-          </div>
-
-          <div class="industry-card reveal-element" data-delay="0.32">
-            <div class="industry-icon-wrap">
-              <i data-lucide="pie-chart" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Analytics Platforms</h3>
-            <p class="industry-desc">Scalable data intelligence platforms, custom dashboards, and business intelligence products built for organizations that run on data.</p>
-            <a href="#contact" class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
-          </div>
-
-          <div class="industry-card industry-cta-card reveal-element" data-delay="0.4">
-            <div class="industry-icon-wrap">
-              <i data-lucide="plus" class="w-5 h-5 text-brand-600"></i>
-            </div>
-            <h3 class="industry-title">Your Industry</h3>
-            <p class="industry-desc">We architect intelligent solutions for any data-intensive sector. Bring us your hardest data challenge.</p>
-            <a href="#contact" class="btn-primary text-sm px-5 py-2.5 inline-block mt-4">Start a Conversation</a>
-          </div>
-
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="industries-container">
+          <!-- industries dynamically rendered here -->
         </div>
       </div>
     </section>
@@ -518,83 +370,17 @@
               <span class="w-5 h-px bg-sky-500"></span>
               <span>Research &amp; Innovation</span>
             </div>
-            <h2 class="section-title mb-6">Science Before<br />Every Solution</h2>
-            <p class="text-slate-500 text-base leading-relaxed mb-12">
-              Our research-first methodology ensures every product is built on a mathematically rigorous foundation. We do not ship without validation.
-            </p>
+            <h2 class="section-title mb-6" data-bind="textContent.research.title"></h2>
+            <p class="text-slate-500 text-base leading-relaxed mb-12" data-bind="textContent.research.description"></p>
 
-            <div class="space-y-6">
-              <div class="research-pillar reveal-element">
-                <div class="pillar-icon"><i data-lucide="microscope" class="w-4 h-4"></i></div>
-                <div>
-                  <h4 class="text-sm font-semibold text-slate-900 mb-1">Experimental AI Systems</h4>
-                  <p class="text-sm text-slate-500 leading-relaxed">Structured experiments to test novel architectures and algorithms &mdash; verified, reproducible science over assumptions.</p>
-                </div>
-              </div>
-              <div class="research-pillar reveal-element" data-delay="0.1">
-                <div class="pillar-icon"><i data-lucide="lock" class="w-4 h-4"></i></div>
-                <div>
-                  <h4 class="text-sm font-semibold text-slate-900 mb-1">Proprietary Intelligence</h4>
-                  <p class="text-sm text-slate-500 leading-relaxed">Custom algorithms, proprietary datasets, and optimized model weights that become lasting strategic assets.</p>
-                </div>
-              </div>
-              <div class="research-pillar reveal-element" data-delay="0.2">
-                <div class="pillar-icon"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-                <div>
-                  <h4 class="text-sm font-semibold text-slate-900 mb-1">Scalable Architectures</h4>
-                  <p class="text-sm text-slate-500 leading-relaxed">Engineered for scale from day one &mdash; designed to handle growing data volumes and evolving model requirements.</p>
-                </div>
-              </div>
+            <div class="space-y-6" id="research-pillars-container">
+              <!-- Research pillars dynamically rendered here -->
             </div>
           </div>
 
           <!-- Right: Process steps -->
-          <div class="reveal-element space-y-3 pt-2 lg:pt-14">
-
-            <div class="process-step-card">
-              <div class="step-number">01</div>
-              <div class="step-content">
-                <div class="step-header">
-                  <i data-lucide="search" class="w-4 h-4 text-brand-500"></i>
-                  <h3 class="step-title">Discovery &amp; Research</h3>
-                </div>
-                <p class="step-desc">Deep exploratory data analysis, statistical research, and problem formulation to establish a rigorous scientific baseline before any engineering begins.</p>
-              </div>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-number">02</div>
-              <div class="step-content">
-                <div class="step-header">
-                  <i data-lucide="git-branch" class="w-4 h-4 text-brand-500"></i>
-                  <h3 class="step-title">Experimental Modeling</h3>
-                </div>
-                <p class="step-desc">Iterative hypothesis testing, model experimentation, and validation cycles against your proprietary datasets with full reproducibility.</p>
-              </div>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-number">03</div>
-              <div class="step-content">
-                <div class="step-header">
-                  <i data-lucide="settings-2" class="w-4 h-4 text-brand-500"></i>
-                  <h3 class="step-title">Architecture &amp; Engineering</h3>
-                </div>
-                <p class="step-desc">Custom ML architecture design, LLM optimization, and scalable system engineering aligned to production-grade requirements.</p>
-              </div>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-number">04</div>
-              <div class="step-content">
-                <div class="step-header">
-                  <i data-lucide="rocket" class="w-4 h-4 text-brand-500"></i>
-                  <h3 class="step-title">Product Commercialization</h3>
-                </div>
-                <p class="step-desc">Deploying scalable, enterprise-grade products and intelligence platforms ready for real-world business impact and long-term ROI.</p>
-              </div>
-            </div>
-
+          <div class="reveal-element space-y-3 pt-2 lg:pt-14" id="process-steps-container">
+            <!-- Process steps dynamically rendered here -->
           </div>
         </div>
 
@@ -604,26 +390,8 @@
     <!-- ========== STATS ========== -->
     <section class="section-alt py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="stats-row reveal-element">
-          <div class="stat-block">
-            <div class="stat-value" data-target="50" data-suffix="+">0</div>
-            <div class="stat-label">AI Models Built</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-block">
-            <div class="stat-value" data-target="10" data-suffix="TB+">0</div>
-            <div class="stat-label">Data Processed</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-block">
-            <div class="stat-value" data-target="30" data-suffix="+">0</div>
-            <div class="stat-label">Workflows Optimised</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-block">
-            <div class="stat-value" data-target="20" data-suffix="+">0</div>
-            <div class="stat-label">Enterprise Solutions</div>
-          </div>
+        <div class="stats-row reveal-element" id="stats-container">
+          <!-- stats will be dynamically rendered here -->
         </div>
       </div>
     </section>
@@ -637,50 +405,12 @@
             <span class="w-5 h-px bg-sky-500"></span>
             <span>Why AnvIQ Labs</span>
           </div>
-          <h2 class="section-title mb-3">Engineered for<br />Enterprise Performance</h2>
-          <p class="text-slate-500 text-base max-w-md mx-auto">
-            What makes our approach fundamentally different from conventional AI development.
-          </p>
+          <h2 class="section-title mb-3" data-bind="textContent.whyUs.title"></h2>
+          <p class="text-slate-500 text-base max-w-md mx-auto" data-bind="textContent.whyUs.description"></p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-          <div class="why-card reveal-element">
-            <div class="why-icon"><i data-lucide="flask-conical" class="w-4 h-4"></i></div>
-            <h3 class="why-title">Research-Driven Development</h3>
-            <p class="why-desc">Every product starts with deep scientific research. We validate hypotheses with statistical rigor before writing a single line of production code.</p>
-          </div>
-
-          <div class="why-card reveal-element" data-delay="0.08">
-            <div class="why-icon"><i data-lucide="scale" class="w-4 h-4"></i></div>
-            <h3 class="why-title">Scalable System Architecture</h3>
-            <p class="why-desc">Built to scale alongside your data &mdash; our platforms handle increasing complexity without performance degradation or architectural re-engineering.</p>
-          </div>
-
-          <div class="why-card reveal-element" data-delay="0.16">
-            <div class="why-icon"><i data-lucide="shield" class="w-4 h-4"></i></div>
-            <h3 class="why-title">Secure Data Sovereignty</h3>
-            <p class="why-desc">We prioritize the security and integrity of your proprietary data throughout the development lifecycle with enterprise-grade protocols.</p>
-          </div>
-
-          <div class="why-card reveal-element" data-delay="0.24">
-            <div class="why-icon"><i data-lucide="zap" class="w-4 h-4"></i></div>
-            <h3 class="why-title">High-Performance Engineering</h3>
-            <p class="why-desc">Precision-engineered systems combining pure data science with modern AI, delivering results that are both innovative and mathematically sound.</p>
-          </div>
-
-          <div class="why-card reveal-element" data-delay="0.32">
-            <div class="why-icon"><i data-lucide="package-2" class="w-4 h-4"></i></div>
-            <h3 class="why-title">Product-Focused Innovation</h3>
-            <p class="why-desc">We are builders, not consultants. Every engagement produces a scalable, commercializable product &mdash; not just a report or a proof of concept.</p>
-          </div>
-
-          <div class="why-card reveal-element" data-delay="0.4">
-            <div class="why-icon"><i data-lucide="lightbulb" class="w-4 h-4"></i></div>
-            <h3 class="why-title">Domain-Optimized Intelligence</h3>
-            <p class="why-desc">Context-aware AI grounded in your specific industry knowledge &mdash; not generic outputs from public models, but intelligence tuned to your domain.</p>
-          </div>
-
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="why-us-container">
+          <!-- Why Choose Us dynamically rendered here -->
         </div>
       </div>
     </section>
@@ -695,10 +425,8 @@
               <span class="w-5 h-px bg-sky-500"></span>
               <span>Contact</span>
             </div>
-            <h2 class="section-title mb-3">Let's Build Something<br />Intelligent Together</h2>
-            <p class="text-slate-500 text-base max-w-md mx-auto">
-              Tell us about your data challenge. We will architect the right intelligent solution for you.
-            </p>
+            <h2 class="section-title mb-3" data-bind="textContent.contact.title"></h2>
+            <p class="text-slate-500 text-base max-w-md mx-auto" data-bind="textContent.contact.description"></p>
           </div>
 
           <div class="grid lg:grid-cols-5 gap-10 lg:gap-14 items-start">
@@ -798,40 +526,30 @@
         <!-- Brand -->
         <div class="lg:col-span-2">
           <div class="flex items-center gap-2.5 mb-5">
-            <div class="logo-mark"><span>A</span></div>
-            <span class="font-display font-semibold text-lg text-white">AnvIQ <span class="text-brand-400">Labs</span></span>
+            <div class="logo-mark"><span data-bind="textContent.nav.logoMark"></span></div>
+            <span class="font-display font-semibold text-lg text-white">
+              <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-400" data-bind="textContent.nav.logoP2"></span>
+            </span>
           </div>
-          <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-6">
-            A research-driven AI technology company building intelligent software products that transform complex data into actionable business intelligence.
-          </p>
-          <div class="flex items-center gap-2.5">
-            <a href="#" class="social-icon-dark" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-            <a href="#" class="social-icon-dark" aria-label="Twitter"><i data-lucide="twitter" class="w-4 h-4"></i></a>
-            <a href="#" class="social-icon-dark" aria-label="GitHub"><i data-lucide="github" class="w-4 h-4"></i></a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-6" data-bind="textContent.footer.description"></p>
+          <div class="flex items-center gap-2.5" id="footer-social-container">
+            <!-- Social links dynamically rendered here -->
           </div>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h4 class="footer-heading">Company</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#about"        class="footer-link">About Us</a></li>
-            <li><a href="#capabilities" class="footer-link">Capabilities</a></li>
-            <li><a href="#industries"   class="footer-link">Industries</a></li>
-            <li><a href="#research"     class="footer-link">Research</a></li>
-            <li><a href="#contact"      class="footer-link">Contact</a></li>
+          <h4 class="footer-heading" data-bind="textContent.footer.companyTitle"></h4>
+          <ul class="space-y-2.5" id="footer-company-container">
+            <!-- Company Links dynamically rendered here -->
           </ul>
         </div>
 
         <!-- Solutions -->
         <div>
-          <h4 class="footer-heading">Solutions</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#capabilities" class="footer-link">Custom LLM Development</a></li>
-            <li><a href="#capabilities" class="footer-link">ML Model Design</a></li>
-            <li><a href="#capabilities" class="footer-link">Data Science</a></li>
-            <li><a href="#capabilities" class="footer-link">Predictive Intelligence</a></li>
-            <li><a href="#capabilities" class="footer-link">AI Platforms</a></li>
+          <h4 class="footer-heading" data-bind="textContent.footer.solutionsTitle"></h4>
+          <ul class="space-y-2.5" id="footer-solutions-container">
+            <!-- Solutions Links dynamically rendered here -->
           </ul>
         </div>
 
@@ -839,10 +557,9 @@
 
       <!-- Bottom bar -->
       <div class="border-t border-slate-800 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-slate-500 text-sm">&copy; <span id="year"></span> AnvIQ Labs. All rights reserved.</p>
-        <div class="flex items-center gap-6">
-          <a href="#" class="text-slate-500 hover:text-slate-300 text-sm transition-colors">Privacy Policy</a>
-          <a href="#" class="text-slate-500 hover:text-slate-300 text-sm transition-colors">Terms of Service</a>
+        <p class="text-slate-500 text-sm" data-bind="textContent.footer.copyright"></p>
+        <div class="flex items-center gap-6" id="footer-legal-container">
+          <!-- Legal links dynamically rendered here -->
         </div>
       </div>
 
@@ -850,6 +567,8 @@
   </footer>
 
   <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/navbar.js"></script>
   <script src="js/animations.js"></script>
