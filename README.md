@@ -72,10 +72,20 @@ Then visit `http://localhost:3000`.
 
 ---
 
-## Connecting the Contact Form
+## Contact Form & Email Client
 
-In `js/main.js`, locate the `TODO` comment inside `initContactForm()` and replace the `setTimeout` simulation with a real `fetch()` call to your backend endpoint or a form service (e.g. Formspree, EmailJS, AWS SES).
+The contact form is fully integrated using Javascript!
+- Fields are fully validated on the client side (with required asterisks).
+- Upon successful validation, the website grabs the dynamically encoded destination email address from js/data.js (siteData.textContent.contact.info.email).
+- It seamlessly generates an encoded mailto: link containing all form responses (Name, Email, Company, Inquiry Type, and Message) and immediately triggers the users local mail client.
 
+---
+
+## Interactive UI Features
+
+- **Decoupled Data Architecture**: All copy resides in js/data.js via a custom data-binding engine.
+- **Scroll Animations**: AOS (Animate On Scroll) powers the layouts scroll-based reveal animations.
+- **Floating Action Button**: A dynamic scroll button automatically tracks user scroll depth, morphing between scroll to bottom and scroll to top controls seamlessly.
 ---
 
 ## Customisation
