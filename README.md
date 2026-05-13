@@ -1,27 +1,31 @@
 # AnvIQ Labs — Website
 
-A modern, premium static website for **AnvIQ Labs** built with pure HTML5, Tailwind CSS (CDN), and vanilla JavaScript.
+A modern, premium, data-driven static landing page for **AnvIQ Labs** built with pure HTML5, Tailwind CSS (via CDN), and Vanilla JavaScript.
 
 ---
 
-## Project Structure
+## Project Structure & Architecture
 
-```
+We use a modular, decoupled architecture where **all textual content is separated from the HTML markup**. This makes updating copy easy and keeps the HTML clean structure-only.
+
+```text
 AnvIQ Labs/
 │
-├── index.html           ← Single-page application entry point (all sections inline)
+├── index.html           ← Main structure with empty DOM containers (`id="xyz-container"`)
 │
 ├── css/
-│   └── styles.css       ← Custom styles complementing Tailwind utilities
+│   └── styles.css       ← Custom styles complementing Tailwind utilities (hover states, animations)
 │
 ├── js/
-│   ├── utils.js         ← Pure utility functions (debounce, throttle, counter, etc.)
-│   ├── navbar.js        ← Sticky navbar + mobile hamburger menu logic
-│   ├── animations.js    ← Intersection Observer scroll-reveal + animated counters
-│   └── main.js          ← App entry point: Lucide init, smooth scroll, contact form
+│   ├── data.js          ← 🗄️ Single Source of Truth for all site content (JSON-like structure)
+│   ├── render.js        ← ⚙️ Dynamic template renderer (binds `data.js` into `index.html`)
+│   ├── utils.js         ← Pure utility functions (debounce, throttle, counter)
+│   ├── navbar.js        ← Sticky navbar + scrollspy + mobile hamburger menu logic
+│   ├── animations.js    ← Intersection Observer scroll-reveal + animated numbers
+│   └── main.js          ← App entry point (Form handling, icon initialization)
 │
 └── assets/
-    └── images/          ← Static image assets (favicon, OG image, etc.)
+    └── images/          ← Static image assets
 ```
 
 ---
@@ -30,34 +34,31 @@ AnvIQ Labs/
 
 | Layer      | Technology                          |
 |------------|-------------------------------------|
-| Markup     | HTML5 (semantic)                    |
+| Structure  | HTML5 (Semantic, Data-Bound)        |
+| Content    | Vanilla JavaScript Data Objects (`data.js`) |
 | Styling    | Tailwind CSS v3 (CDN)               |
 | Icons      | Lucide Icons (CDN, UMD build)       |
-| Fonts      | Google Fonts — Inter + Space Grotesk|
+| Fonts      | Google Fonts — Inter & Space Grotesk|
 | Scripting  | Vanilla JavaScript (ES6+)           |
 
 ---
 
-## Sections
+## How to Edit Content
 
-1. **Navbar** — Sticky, scroll-aware, mobile hamburger with active link highlighting
-2. **Hero** — Full-screen with animated gradient blobs, floating glass cards, micro stats
-3. **About** — Company philosophy, research-first approach, proprietary intelligence systems
-4. **Capabilities** — 6 capability cards with hover effects and categorisation tags
-5. **Industries** — 5 industry cards + open CTA tile
-6. **Research** — 4-step process flow + 3 research pillar cards
-7. **Stats** — Animated counters triggered on scroll via Intersection Observer
-8. **Why Choose Us** — 6 differentiator cards
-9. **Contact** — Validated contact form + company info + mission quote
-10. **Footer** — Brand, quick links, solutions, social icons, legal links
+To change **any text, link, logo, or icon** on the website, you **do not need to touch `index.html`**. 
+
+1. Open `js/data.js`.
+2. Find the relevant section (`textContent`, `capabilities`, `industries`, etc.).
+3. Update the string values.
+4. Refresh the page! The `render.js` engine will automatically parse your changes and inject them into the DOM.
 
 ---
 
 ## Running Locally
 
-Simply open `index.html` in any modern browser — no build step required.
+Simply open `index.html` in any modern browser or use an extension like VS Code Live Server — no complex build steps required.
 
-For live-reload during development, use a simple local server:
+For live-reload during development via terminal:
 
 ```bash
 # Python 3
@@ -79,10 +80,9 @@ In `js/main.js`, locate the `TODO` comment inside `initContactForm()` and replac
 
 ## Customisation
 
-- **Colors & theme** — Edit the `tailwind.config` block inside `index.html`
-- **Content** — All section content is in `index.html`; search for the section comments (`<!-- HERO -->`, `<!-- ABOUT -->`, etc.)
-- **Styles** — Component-level styles live in `css/styles.css`; Tailwind utilities are applied directly in HTML
+- **Colors & Theme** — Edit the `tailwind.config` block in the `<head>` of `index.html`.
+- **Deep Hover Effects** — Adjust the custom CSS transitions and `.reveal-element` classes inside `css/styles.css`.
 
 ---
 
-© 2025 AnvIQ Labs. All rights reserved.
+&copy; 2026 AnvIQ Labs. All rights reserved.
