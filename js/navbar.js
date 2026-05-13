@@ -66,22 +66,24 @@
 
   function highlightNav() {
     const scrollY = window.scrollY + 120;
+    let matched = false;
     sections.forEach(section => {
       const top    = section.offsetTop;
       const height = section.offsetHeight;
       const id     = section.getAttribute('id');
       if (scrollY >= top && scrollY < top + height) {
+        matched = true;
         navLinks.forEach(link => {
-          link.classList.remove('text-white');
-          link.classList.add('text-slate-400');
+          link.classList.remove('active');
           if (link.getAttribute('href') === `#${id}`) {
-            link.classList.remove('text-slate-400');
-            link.classList.add('text-white');
+            link.classList.add('active');
           }
         });
       }
     });
+    if (!matched) navLinks.forEach(link => link.classList.remove('active'));
   }
 
   window.addEventListener('scroll', throttle(highlightNav, 100), { passive: true });
+  highlightNav();
 })();
