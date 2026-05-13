@@ -93,3 +93,22 @@ function isValidEmail(email) {
 function isNonEmpty(value) {
   return value.trim().length > 0;
 }
+
+/* ---------- Form Status helper ---------- */
+/**
+ * Displays a status message in the target element.
+ * @param {HTMLElement} el      - Element to display status in
+ * @param {string}      message - Status message
+ * @param {string}      type    - 'error' or 'success'
+ */
+function showStatus(el, message, type) {
+  if (!el) return;
+  el.textContent = message;
+  if (type === 'error') {
+    el.className = 'text-red-500 text-sm mt-2 font-medium block';
+  } else if (type === 'success') {
+    el.className = 'text-green-500 text-sm mt-2 font-medium block';
+  } else {
+    el.className = 'text-sm mt-2 font-medium';
+  }
+}

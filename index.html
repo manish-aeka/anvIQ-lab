@@ -436,21 +436,21 @@
               <form id="contact-form" novalidate>
                 <div class="grid sm:grid-cols-2 gap-4 mb-4">
                   <div class="form-group">
-                    <label class="form-label" for="name">Full Name</label>
+                    <label class="form-label" for="name">Full Name <span class="text-red-500">*</span></label>
                     <input type="text" id="name" name="name" placeholder="Jane Smith" class="form-input" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
+                    <label class="form-label" for="email">Email Address <span class="text-red-500">*</span></label>
                     <input type="email" id="email" name="email" placeholder="jane@company.com" class="form-input" required />
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <label class="form-label" for="company">Company / Organisation</label>
-                  <input type="text" id="company" name="company" placeholder="Your company name" class="form-input" />
+                  <label class="form-label" for="company">Company / Organisation <span class="text-red-500">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Your company name" class="form-input" required />
                 </div>
                 <div class="form-group mb-4">
-                  <label class="form-label" for="subject">Inquiry Type</label>
-                  <select id="subject" name="subject" class="form-input">
+                  <label class="form-label" for="subject">Inquiry Type <span class="text-red-500">*</span></label>
+                  <select id="subject" name="subject" class="form-input" required>
                     <option value="">Select an inquiry type</option>
                     <option value="llm">Custom LLM Development</option>
                     <option value="ml">ML Model Design</option>
@@ -460,7 +460,7 @@
                   </select>
                 </div>
                 <div class="form-group mb-6">
-                  <label class="form-label" for="message">Message</label>
+                  <label class="form-label" for="message">Message <span class="text-red-500">*</span></label>
                   <textarea id="message" name="message" rows="5" placeholder="Describe your data challenge or project idea..." class="form-input resize-none" required></textarea>
                 </div>
                 <button type="submit" class="btn-primary w-full py-3.5 text-sm font-semibold flex items-center justify-center gap-2 group">
@@ -565,6 +565,16 @@
 
     </div>
   </footer>
+
+    <!-- Floating Scroll Button -->
+  <button id="floating-scroll-btn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 md:bottom-8 md:right-8 opacity-0 pointer-events-none" aria-label="Toggle Scroll">
+    <i data-lucide="arrow-down" id="scroll-icon" class="w-6 h-6"></i>
+  </button>
+
+    <!-- Floating Scroll Button -->
+  <button id="floating-scroll-btn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 md:bottom-8 md:right-8 opacity-0 pointer-events-none" aria-label="Toggle Scroll">
+    <i data-lucide="arrow-down" id="scroll-icon" class="w-6 h-6"></i>
+  </button>
 
   <!-- JavaScript Modules -->
   <script src="js/data.js"></script>
