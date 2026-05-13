@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AnvIQ Labs &mdash; Research-driven AI technology company building intelligent software products that help businesses make smarter decisions." />
+  <title>AnvIQ Labs &mdash; Intelligent AI Products</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            /* Primary &mdash; blue */
+            brand: {
+              50:  '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            /* Sky/cyan accent */
+            sky: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            /* Page surfaces */
+            surface: {
+              50:  '#f8faff',
+              100: '#eef1fc',
+              200: '#e0e7ff',
+            },
+          },
+          animation: {
+            'float':       'float 7s ease-in-out infinite',
+            'float-slow':  'float 9s ease-in-out 1.5s infinite',
+            'pulse-slow':  'pulse 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%':       { transform: 'translateY(-12px)' },
+            },
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-surface-100 text-slate-700 font-sans antialiased">
+
+
+  <!-- ========== NAVBAR ========== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-[70px]">
+
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2.5 group" aria-label="AnvIQ Labs Home">
+          <div class="logo-mark">
+            <span data-bind="textContent.nav.logoMark"></span>
+          </div>
+          <span class="font-display font-semibold text-lg tracking-tight text-slate-900">
+            <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-600" data-bind="textContent.nav.logoP2"></span>
+          </span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-1" role="menubar">
+          <a href="#about"        class="nav-link" role="menuitem" data-bind="textContent.nav.links.0.text"></a>
+          <a href="#capabilities" class="nav-link" role="menuitem" data-bind="textContent.nav.links.1.text"></a>
+          <a href="#industries"   class="nav-link" role="menuitem" data-bind="textContent.nav.links.2.text"></a>
+          <a href="#research"     class="nav-link" role="menuitem" data-bind="textContent.nav.links.3.text"></a>
+          <a href="#contact"      class="nav-link" role="menuitem" data-bind="textContent.nav.links.4.text"></a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#contact" class="btn-primary text-sm px-5 py-2.5" data-bind="textContent.nav.cta"></a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="w-5 h-5" id="menu-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white/98 backdrop-blur-xl shadow-lg" role="menu">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+        <a href="#about"        class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.0.text"></a>
+        <a href="#capabilities" class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.1.text"></a>
+        <a href="#industries"   class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.2.text"></a>
+        <a href="#research"     class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.3.text"></a>
+        <a href="#contact"      class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.4.text"></a>
+        <div class="pt-3 pb-1 border-t border-slate-100 mt-1">
+          <a href="#contact" class="btn-primary w-full text-center block py-2.5" data-bind="textContent.nav.cta"></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+
+      <!-- Soft background blobs -->
+      <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+      <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          <!-- Left: Text -->
+          <div class="text-center lg:text-left reveal-element">
+
+            <!-- Overline -->
+            <div class="section-overline justify-center lg:justify-start mb-7">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span data-bind="textContent.hero.overline"></span>
+            </div>
+
+            <h1 class="font-display font-bold text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.1] tracking-tight text-slate-900 mb-6">
+              <span data-bind="textContent.hero.headlineP1"></span><br />
+              <span class="accent-text" data-bind="textContent.hero.headlineAccent"></span> <span data-bind="textContent.hero.headlineP2"></span>
+            </h1>
+
+            <p class="text-slate-600 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10" data-bind="textContent.hero.description"></p>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <a href="#capabilities" class="btn-primary px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 group w-full sm:w-auto">
+                <span data-bind="textContent.hero.btnPrimary"></span>
+                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"></i>
+              </a>
+              <a href="#contact" class="btn-ghost px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto" data-bind="textContent.hero.btnGhost"></a>
+            </div>
+
+            <!-- Micro stats -->
+            <div class="mt-14 pt-8 border-t border-slate-200 flex flex-wrap gap-8 justify-center lg:justify-start">
+              <div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.0.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.0.label"></div>
+              </div>
+              <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
+              <div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.1.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.1.label"></div>
+              </div>
+              <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
+              <div>
+                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.2.value"></div>
+                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.2.label"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Platform mockup (light mode) -->
+          <div class="relative flex items-center justify-center reveal-element">
+            <div class="platform-card animate-float w-full max-w-md mx-auto">
+
+              <div class="platform-header">
+                <div class="window-dots">
+                  <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                </div>
+                <span class="platform-title">AnvIQ Intelligence Platform</span>
+                <span class="live-badge">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse-slow"></span>
+                  Live
+                </span>
+              </div>
+
+              <div class="platform-body">
+                <div class="metric-row">
+                  <div class="metric-header">
+                    <span class="metric-name">Custom LLM &mdash; Domain Classifier</span>
+                    <div class="flex items-center gap-2">
+                      <span class="metric-trend">&#9650; 2.1%</span>
+                      <span class="metric-value">97.4%</span>
+                    </div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width: 97.4%"></div></div>
+                  <div class="metric-sub">Accuracy &middot; Fine-tuned on proprietary corpus</div>
+                </div>
+
+                <div class="metric-row">
+                  <div class="metric-header">
+                    <span class="metric-name">ML Pipeline &mdash; Predictive Engine</span>
+                    <div class="flex items-center gap-2">
+                      <span class="metric-trend">&#9650; 0.03</span>
+                      <span class="metric-value">F1 0.94</span>
+                    </div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width: 94%"></div></div>
+                  <div class="metric-sub">F1 Score &middot; Bespoke classification model</div>
+                </div>
+
+                <div class="metric-row">
+                  <div class="metric-header">
+                    <span class="metric-name">Data Science &mdash; Analytics Layer</span>
+                    <div class="flex items-center gap-2">
+                      <span class="metric-trend">&#9650; 0.3 TB</span>
+                      <span class="metric-value">2.1 TB</span>
+                    </div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width: 88%"></div></div>
+                  <div class="metric-sub">Processed &middot; Statistical research complete</div>
+                </div>
+
+                <div class="platform-footer-row">
+                  <div class="platform-stat">
+                    <div class="platform-stat-value">50+</div>
+                    <div class="platform-stat-label">Models</div>
+                  </div>
+                  <div class="platform-divider"></div>
+                  <div class="platform-stat">
+                    <div class="platform-stat-value">99.9%</div>
+                    <div class="platform-stat-label">Uptime</div>
+                  </div>
+                  <div class="platform-divider"></div>
+                  <div class="platform-stat">
+                    <div class="platform-stat-value">&lt;50ms</div>
+                    <div class="platform-stat-label">Latency</div>
+                  </div>
+                  <div class="platform-divider"></div>
+                  <div class="platform-stat">
+                    <div class="platform-stat-value flex items-center justify-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>0
+                    </div>
+                    <div class="platform-stat-label">Errors</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="section-alt py-24 lg:py-32 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          <!-- Left -->
+          <div class="reveal-element">
+            <div class="section-overline mb-5">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span>About Us</span>
+            </div>
+            <h2 class="section-title mb-6" data-bind="textContent.about.title"></h2>
+            <p class="text-slate-700 text-lg leading-relaxed mb-5" data-bind="textContent.about.p1"></p>
+            <p class="text-slate-500 leading-relaxed mb-10" data-bind="textContent.about.p2"></p>
+
+            <ul class="space-y-4" id="principles-container">
+              <!-- principles dynamically rendered here -->
+            </ul>
+          </div>
+
+          <!-- Right: Stat cards -->
+          <div class="reveal-element grid grid-cols-2 gap-4 pt-2 lg:pt-14">
+            <div class="about-card col-span-2">
+              <blockquote class="text-slate-700 text-base leading-relaxed italic border-l-2 border-brand-500 pl-4">
+                "To empower organizations by transforming their unique data into intuitive, high-impact AI products through rigorous science and cutting-edge machine learning."
+              </blockquote>
+              <p class="text-xs text-slate-400 mt-3 uppercase tracking-widest">AnvIQ Labs &mdash; Mission Statement</p>
+            </div>
+            <div class="about-card text-center py-7">
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">50+</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">AI Models Built</div>
+            </div>
+            <div class="about-card text-center py-7">
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">10 TB+</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">Data Processed</div>
+            </div>
+            <div class="about-card text-center py-7">
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">30+</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">Workflows Optimised</div>
+            </div>
+            <div class="about-card text-center py-7">
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">20+</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">Enterprise Solutions</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CAPABILITIES ========== -->
+    <section id="capabilities" class="py-24 lg:py-32 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 reveal-element">
+          <div>
+            <div class="section-overline mb-4">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span>Core Capabilities</span>
+            </div>
+            <h2 class="section-title" data-bind="textContent.capabilities.title"></h2>
+          </div>
+          <p class="text-slate-500 text-base leading-relaxed max-w-sm lg:text-right" data-bind="textContent.capabilities.description"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="capabilities-container">
+          <!-- Capabilities dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INDUSTRIES ========== -->
+    <section id="industries" class="section-alt py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-14 reveal-element">
+          <div class="section-overline justify-center mb-4">
+            <span class="w-5 h-px bg-sky-500"></span>
+            <span>Industries</span>
+          </div>
+          <h2 class="section-title mb-3" data-bind="textContent.industries.title"></h2>
+          <p class="text-slate-500 text-base max-w-xl mx-auto" data-bind="textContent.industries.description"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="industries-container">
+          <!-- industries dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== RESEARCH ========== -->
+    <section id="research" class="py-24 lg:py-32 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          <!-- Left: Copy + pillars -->
+          <div class="reveal-element">
+            <div class="section-overline mb-5">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span>Research &amp; Innovation</span>
+            </div>
+            <h2 class="section-title mb-6" data-bind="textContent.research.title"></h2>
+            <p class="text-slate-500 text-base leading-relaxed mb-12" data-bind="textContent.research.description"></p>
+
+            <div class="space-y-6" id="research-pillars-container">
+              <!-- Research pillars dynamically rendered here -->
+            </div>
+          </div>
+
+          <!-- Right: Process steps -->
+          <div class="reveal-element space-y-3 pt-2 lg:pt-14" id="process-steps-container">
+            <!-- Process steps dynamically rendered here -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="section-alt py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="stats-row reveal-element" id="stats-container">
+          <!-- stats will be dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-14 reveal-element">
+          <div class="section-overline justify-center mb-4">
+            <span class="w-5 h-px bg-sky-500"></span>
+            <span>Why AnvIQ Labs</span>
+          </div>
+          <h2 class="section-title mb-3" data-bind="textContent.whyUs.title"></h2>
+          <p class="text-slate-500 text-base max-w-md mx-auto" data-bind="textContent.whyUs.description"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="why-us-container">
+          <!-- Why Choose Us dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="section-alt py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-14 reveal-element">
+            <div class="section-overline justify-center mb-4">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span>Contact</span>
+            </div>
+            <h2 class="section-title mb-3" data-bind="textContent.contact.title"></h2>
+            <p class="text-slate-500 text-base max-w-md mx-auto" data-bind="textContent.contact.description"></p>
+          </div>
+
+          <div class="grid lg:grid-cols-5 gap-10 lg:gap-14 items-start">
+
+            <!-- Form -->
+            <div class="lg:col-span-3 contact-form-card reveal-element">
+              <form id="contact-form" novalidate>
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div class="form-group">
+                    <label class="form-label" for="name">Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Jane Smith" class="form-input" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="jane@company.com" class="form-input" required />
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label class="form-label" for="company">Company / Organisation <span class="text-red-500">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Your company name" class="form-input" required />
+                </div>
+                <div class="form-group mb-4">
+                  <label class="form-label" for="subject">Inquiry Type <span class="text-red-500">*</span></label>
+                  <select id="subject" name="subject" class="form-input" required>
+                    <option value="">Select an inquiry type</option>
+                    <option value="llm">Custom LLM Development</option>
+                    <option value="ml">ML Model Design</option>
+                    <option value="data">Data Science &amp; Analytics</option>
+                    <option value="product">Platform Development</option>
+                    <option value="other">General Inquiry</option>
+                  </select>
+                </div>
+                <div class="form-group mb-6">
+                  <label class="form-label" for="message">Message <span class="text-red-500">*</span></label>
+                  <textarea id="message" name="message" rows="5" placeholder="Describe your data challenge or project idea..." class="form-input resize-none" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full py-3.5 text-sm font-semibold flex items-center justify-center gap-2 group">
+                  Send Message
+                  <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                </button>
+                <p id="form-status" class="mt-3 text-center text-sm hidden"></p>
+              </form>
+            </div>
+
+            <!-- Contact info -->
+            <div class="lg:col-span-2 space-y-5 reveal-element">
+
+              <div class="contact-info-row">
+                <div class="contact-info-icon"><i data-lucide="mail" class="w-4 h-4 text-brand-500"></i></div>
+                <div>
+                  <div class="contact-info-label">Email</div>
+                  <a href="#" id="contact-email-link" class="contact-info-value hover:text-brand-600 transition-colors" data-bind="textContent.contact.info.email">hello@anviquelabs.com</a>
+                </div>
+              </div>
+
+              <div class="contact-info-row">
+                <div class="contact-info-icon"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i></div>
+                <div>
+                  <div class="contact-info-label">Location</div>
+                  <div class="contact-info-value" data-bind="textContent.contact.info.location">India</div>
+                </div>
+              </div>
+
+              <div class="contact-info-row">
+                <div class="contact-info-icon"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i></div>
+                <div>
+                  <div class="contact-info-label">Response Time</div>
+                  <div class="contact-info-value" data-bind="textContent.contact.info.responseTime">Within 24 hours</div>
+                </div>
+              </div>
+
+              <div class="h-px bg-slate-200 my-2"></div>
+
+              <div class="contact-info-row pt-1">
+                <div class="contact-info-icon"><i data-lucide="share-2" class="w-4 h-4 text-brand-500"></i></div>
+                <div>
+                  <div class="contact-info-label mb-3">Follow Us</div>
+                  <div class="flex items-center gap-2.5" id="contact-social-container">
+                    <!-- Contact Social links dynamically rendered here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-slate-900 pt-14 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="logo-mark"><span data-bind="textContent.nav.logoMark"></span></div>
+            <span class="font-display font-semibold text-lg text-white">
+              <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-400" data-bind="textContent.nav.logoP2"></span>
+            </span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-6" data-bind="textContent.footer.description"></p>
+          <div class="flex items-center gap-2.5" id="footer-social-container">
+            <!-- Social links dynamically rendered here -->
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-heading" data-bind="textContent.footer.companyTitle"></h4>
+          <ul class="space-y-2.5" id="footer-company-container">
+            <!-- Company Links dynamically rendered here -->
+          </ul>
+        </div>
+
+        <!-- Solutions -->
+        <div>
+          <h4 class="footer-heading" data-bind="textContent.footer.solutionsTitle"></h4>
+          <ul class="space-y-2.5" id="footer-solutions-container">
+            <!-- Solutions Links dynamically rendered here -->
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-slate-800 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-slate-500 text-sm" data-bind="textContent.footer.copyright"></p>
+        <div class="flex items-center gap-6" id="footer-legal-container">
+          <!-- Legal links dynamically rendered here -->
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+    <!-- Floating Scroll Button -->
+  <button id="floating-scroll-btn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 md:bottom-8 md:right-8 opacity-0 pointer-events-none" aria-label="Toggle Scroll">
+    <i data-lucide="arrow-down" id="scroll-icon" class="w-6 h-6"></i>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
