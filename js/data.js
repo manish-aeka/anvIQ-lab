@@ -54,10 +54,14 @@ const siteData = {
       description: "Tell us about your data challenge. We will architect the right intelligent solution for you.",
       btnPrimary: "Send Message",
       info: {
-        addressTitle: "Headquarters",
-        address: "100 Innovation Drive<br />Tech District, CA 94107",
-        emailTitle: "Contact",
-        email: "hello@anviqlabs.com"
+        email: "anviq.ai",
+        location: "India",
+        responseTime: "Within 24 hours",
+        socialLinks: [
+          { href: "#", icon: "linkedin", label: "LinkedIn" },
+          { href: "#", icon: "twitter", label: "Twitter" },
+          { href: "#", icon: "github", label: "GitHub" }
+        ]
       }
     },
     footer: {
@@ -112,10 +116,10 @@ const siteData = {
   ],
   industries: [
     { icon: "building-2", delay: "", title: "Real Estate", desc: "Intelligent property valuation, demand forecasting, market trend analysis, and AI-powered lead intelligence for real estate platforms." },
-    { icon: "shopping-bag", delay: "0.08", title: "Retail", desc: "Personalized recommendation engines, inventory optimization, customer behavior prediction, and demand planning systems for retail businesses." },
-    { icon: "users", delay: "0.16", title: "Consumer Businesses", desc: "AI-driven customer experience platforms, sentiment analysis, churn prediction, and engagement optimization built for consumer-facing operations." },
-    { icon: "factory", delay: "0.24", title: "Enterprise Operations", desc: "Workflow automation, operational intelligence, process optimization, and decision-support systems for complex enterprise environments." },
-    { icon: "pie-chart", delay: "0.32", title: "Analytics Platforms", desc: "Scalable data intelligence platforms, custom dashboards, and business intelligence products built for organizations that run on data." },
+    { icon: "landmark", delay: "0.08", title: "Finance", desc: "Algorithmic risk assessment, fraud detection, and predictive financial analytics built for the modern financial sector." },
+    { icon: "briefcase", delay: "0.16", title: "Human Resources", desc: "Talent acquisition optimization, employee retention prediction, and workforce analytics powered by machine learning." },
+    { icon: "shopping-bag", delay: "0.24", title: "Retail", desc: "Personalized recommendation engines, inventory optimization, customer behavior prediction, and demand planning systems for retail businesses." },
+    { icon: "users", delay: "0.32", title: "Consumer Businesses", desc: "AI-driven customer experience platforms, sentiment analysis, churn prediction, and engagement optimization built for consumer-facing operations." },
     { special: true, delay: "0.4", icon: "plus", title: "Your Industry", desc: "We architect intelligent solutions for any data-intensive sector. Bring us your hardest data challenge." }
   ],
   researchPillars: [
