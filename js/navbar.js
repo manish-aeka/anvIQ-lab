@@ -12,7 +12,7 @@
   let   menuOpen     = false;
 
   /* ---- Sticky / scrolled state ---- */
-  const SCROLL_THRESHOLD = 40; // px before navbar gets 'scrolled' class
+  const SCROLL_THRESHOLD = 20;
 
   function onScroll() {
     if (window.scrollY > SCROLL_THRESHOLD) {
