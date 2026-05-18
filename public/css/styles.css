@@ -29,8 +29,10 @@ body {
 .section-alt { background-color: #ffffff; }
 
 /* ============================================================
-   HERO â€” SOFT BACKGROUND BLOBS
+   HERO SECTION
    ============================================================ */
+   
+/* Hero Background Blobs */
 .hero-blob {
   position: absolute;
   border-radius: 50%;
@@ -47,6 +49,90 @@ body {
   width: 420px; height: 420px;
   bottom: -80px; left: -60px;
   background: rgba(186, 230, 253, 0.4);
+}
+
+/* Hero Headline */
+.hero-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+/* Hero Description */
+.hero-description {
+  color: #475569;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-description {
+    margin: 0 0 2.5rem 0;
+  }
+}
+
+/* Hero Stats */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e2e8f0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+  .hero-stats {
+    justify-content: flex-start;
+  }
+}
+
+.hero-stat-item {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-stat-item {
+    text-align: left;
+  }
+}
+
+.hero-stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+  margin-bottom: 0.375rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-stat-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, transparent, #e2e8f0 20%, #e2e8f0 80%, transparent);
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hero-stat-divider {
+    display: block;
+  }
 }
 
 /* ============================================================
@@ -453,7 +539,6 @@ body {
   flex-direction: column;
   height: 100%;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
-  cursor: pointer;
 }
 .industry-card:hover {
   border-color: #bfdbfe;
@@ -503,20 +588,6 @@ body {
   line-height: 1.65;
   flex-grow: 1;
   margin-bottom: 1.5rem;
-}
-.industry-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3b82f6;
-  margin-top: auto;
-  transition: gap 0.3s, color 0.3s;
-}
-.industry-card:hover .industry-cta { 
-  gap: 10px; 
-  color: #1d4ed8; 
 }
 
 /* ============================================================

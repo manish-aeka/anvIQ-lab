@@ -135,50 +135,55 @@
       <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
       <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
-        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 w-full">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
 
           <!-- Left: Text -->
           <div class="text-center lg:text-left reveal-element">
 
             <!-- Overline -->
-            <div class="section-overline justify-center lg:justify-start mb-7">
-              <span class="w-5 h-px bg-sky-500"></span>
+            <div class="section-overline justify-center lg:justify-start mb-6">
+              <span class="w-6 h-px bg-sky-500"></span>
               <span data-bind="textContent.hero.overline"></span>
             </div>
 
-            <h1 class="font-display font-bold text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.1] tracking-tight text-slate-900 mb-6">
-              <span data-bind="textContent.hero.headlineP1"></span><br />
-              <span class="accent-text" data-bind="textContent.hero.headlineAccent"></span> <span data-bind="textContent.hero.headlineP2"></span>
+            <!-- Hero Headline -->
+            <h1 class="hero-headline">
+              <span class="block mb-2" data-bind="textContent.hero.headlineP1"></span>
+              <span class="accent-text" data-bind="textContent.hero.headlineAccent"></span>
+              <span class="block mt-2" data-bind="textContent.hero.headlineP2"></span>
             </h1>
 
-            <p class="text-slate-600 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10" data-bind="textContent.hero.description"></p>
+            <!-- Description -->
+            <p class="hero-description" data-bind="textContent.hero.description"></p>
 
-            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <a href="#capabilities" class="btn-primary px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 group w-full sm:w-auto">
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <a href="#capabilities" class="btn-primary px-8 py-4 text-sm font-semibold inline-flex items-center justify-center gap-2 group w-full sm:w-auto">
                 <span data-bind="textContent.hero.btnPrimary"></span>
                 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"></i>
               </a>
-              <a href="#contact" class="btn-ghost px-7 py-3.5 text-sm font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto" data-bind="textContent.hero.btnGhost"></a>
+              <a href="#contact" class="btn-ghost px-8 py-4 text-sm font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto" data-bind="textContent.hero.btnGhost"></a>
             </div>
 
             <!-- Micro stats -->
-            <div class="mt-14 pt-8 border-t border-slate-200 flex flex-wrap gap-8 justify-center lg:justify-start">
-              <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.0.value"></div>
-                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.0.label"></div>
+            <div class="hero-stats">
+              <div class="hero-stat-item">
+                <div class="hero-stat-value" data-bind="textContent.hero.microStats.0.value"></div>
+                <div class="hero-stat-label" data-bind="textContent.hero.microStats.0.label"></div>
               </div>
-              <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
-              <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.1.value"></div>
-                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.1.label"></div>
+              <div class="hero-stat-divider"></div>
+              <div class="hero-stat-item">
+                <div class="hero-stat-value" data-bind="textContent.hero.microStats.1.value"></div>
+                <div class="hero-stat-label" data-bind="textContent.hero.microStats.1.label"></div>
               </div>
-              <div class="w-px bg-slate-200 self-stretch hidden sm:block"></div>
-              <div>
-                <div class="text-2xl font-display font-bold text-slate-900 tabular-nums" data-bind="textContent.hero.microStats.2.value"></div>
-                <div class="text-xs text-slate-500 mt-0.5 tracking-wide" data-bind="textContent.hero.microStats.2.label"></div>
+              <div class="hero-stat-divider"></div>
+              <div class="hero-stat-item">
+                <div class="hero-stat-value" data-bind="textContent.hero.microStats.2.value"></div>
+                <div class="hero-stat-label" data-bind="textContent.hero.microStats.2.label"></div>
               </div>
             </div>
+            <p class="text-xs text-slate-400 mt-3 italic text-center lg:text-left" data-bind="textContent.hero.accuracyNote"></p>
           </div>
 
           <!-- Right: Platform mockup (light mode) -->
@@ -227,17 +232,17 @@
                   <div class="metric-header">
                     <span class="metric-name">Data Science &mdash; Analytics Layer</span>
                     <div class="flex items-center gap-2">
-                      <span class="metric-trend">&#9650; 0.3 TB</span>
-                      <span class="metric-value">2.1 TB</span>
+                      <span class="metric-trend">&#9650; 1.2 TB</span>
+                      <span class="metric-value">10 TB+</span>
                     </div>
                   </div>
                   <div class="progress-track"><div class="progress-fill" style="width: 88%"></div></div>
-                  <div class="metric-sub">Processed &middot; Statistical research complete</div>
+                  <div class="metric-sub">Processed &middot; Enterprise-scale datasets</div>
                 </div>
 
                 <div class="platform-footer-row">
                   <div class="platform-stat">
-                    <div class="platform-stat-value">50+</div>
+                    <div class="platform-stat-value">55+</div>
                     <div class="platform-stat-label">Models</div>
                   </div>
                   <div class="platform-divider"></div>
@@ -297,20 +302,20 @@
               <p class="text-xs text-slate-400 mt-3 uppercase tracking-widest">AnvIQ Labs &mdash; Mission Statement</p>
             </div>
             <div class="about-card text-center py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">50+</div>
-              <div class="text-xs text-slate-500 uppercase tracking-widest">AI Models Built</div>
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">55+</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">AI Models Deployed</div>
             </div>
             <div class="about-card text-center py-7">
               <div class="text-3xl font-display font-bold text-slate-900 mb-1">10 TB+</div>
               <div class="text-xs text-slate-500 uppercase tracking-widest">Data Processed</div>
             </div>
             <div class="about-card text-center py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">30+</div>
-              <div class="text-xs text-slate-500 uppercase tracking-widest">Workflows Optimised</div>
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">97.4%</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">Model Accuracy</div>
             </div>
             <div class="about-card text-center py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">20+</div>
-              <div class="text-xs text-slate-500 uppercase tracking-widest">Enterprise Solutions</div>
+              <div class="text-3xl font-display font-bold text-slate-900 mb-1">&lt;50ms</div>
+              <div class="text-xs text-slate-500 uppercase tracking-widest">Avg Latency</div>
             </div>
           </div>
 
@@ -384,6 +389,44 @@
           </div>
         </div>
 
+        <!-- Technical Substantiation -->
+        <div class="max-w-5xl mx-auto mt-20 grid md:grid-cols-2 gap-8">
+          
+          <!-- Whitepaper Summary -->
+          <div class="reveal-element">
+            <div class="about-card p-8 h-full">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center">
+                  <i data-lucide="file-text" class="w-5 h-5 text-brand-600"></i>
+                </div>
+                <h3 class="text-lg font-display font-semibold text-slate-900" data-bind="textContent.research.whitepaper.title"></h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed mb-6" data-bind="textContent.research.whitepaper.summary"></p>
+              <a href="#contact" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors group">
+                Download Methodology Whitepaper
+                <i data-lucide="download" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Proprietary Intelligence -->
+          <div class="reveal-element">
+            <div class="about-card p-8 h-full">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center">
+                  <i data-lucide="shield" class="w-5 h-5 text-brand-600"></i>
+                </div>
+                <h3 class="text-lg font-display font-semibold text-slate-900" data-bind="textContent.research.proprietaryIntel.title"></h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4" data-bind="textContent.research.proprietaryIntel.description"></p>
+              <ul class="space-y-2.5" id="proprietary-intel-points">
+                <!-- Dynamically rendered points -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -392,6 +435,54 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="stats-row reveal-element" id="stats-container">
           <!-- stats will be dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECURITY & COMPLIANCE ========== -->
+    <section class="py-16 border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 reveal-element">
+          <div class="section-overline justify-center mb-3">
+            <span class="w-5 h-px bg-sky-500"></span>
+            <span>Security &amp; Compliance</span>
+          </div>
+          <h3 class="text-2xl font-display font-semibold text-slate-900 mb-2">Enterprise-Grade Security Protocols</h3>
+          <p class="text-sm text-slate-500 max-w-2xl mx-auto">We prioritize data sovereignty and security throughout the AI development lifecycle</p>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-element">
+          <div class="flex flex-col items-center text-center p-6">
+            <div class="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mb-4">
+              <i data-lucide="shield-check" class="w-7 h-7 text-brand-600"></i>
+            </div>
+            <h4 class="text-sm font-semibold text-slate-900 mb-2">SOC 2 Compliance</h4>
+            <p class="text-xs text-slate-500">Type II certification in progress</p>
+          </div>
+          
+          <div class="flex flex-col items-center text-center p-6">
+            <div class="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mb-4">
+              <i data-lucide="lock" class="w-7 h-7 text-brand-600"></i>
+            </div>
+            <h4 class="text-sm font-semibold text-slate-900 mb-2">Data Encryption</h4>
+            <p class="text-xs text-slate-500">End-to-end encryption at rest and in transit</p>
+          </div>
+          
+          <div class="flex flex-col items-center text-center p-6">
+            <div class="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mb-4">
+              <i data-lucide="globe" class="w-7 h-7 text-brand-600"></i>
+            </div>
+            <h4 class="text-sm font-semibold text-slate-900 mb-2">GDPR Ready</h4>
+            <p class="text-xs text-slate-500">Full data protection compliance framework</p>
+          </div>
+          
+          <div class="flex flex-col items-center text-center p-6">
+            <div class="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mb-4">
+              <i data-lucide="database" class="w-7 h-7 text-brand-600"></i>
+            </div>
+            <h4 class="text-sm font-semibold text-slate-900 mb-2">Data Isolation</h4>
+            <p class="text-xs text-slate-500">Dedicated infrastructure for enterprise clients</p>
+          </div>
         </div>
       </div>
     </section>
@@ -412,6 +503,117 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="why-us-container">
           <!-- Why Choose Us dynamically rendered here -->
         </div>
+      </div>
+    </section>
+
+    <!-- ========== LEADERSHIP & TALENT ========== -->
+    <section class="section-alt py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-14 reveal-element">
+            <div class="section-overline justify-center mb-4">
+              <span class="w-5 h-px bg-sky-500"></span>
+              <span>Leadership &amp; Talent</span>
+            </div>
+            <h2 class="section-title mb-6">Built by Researchers.<br />Deployed by Engineers.</h2>
+            <p class="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto mb-8">AnvIQ Labs is led by a team of machine learning researchers and software architects with pedigree from top-tier institutions and Fortune 500 AI labs.</p>
+            <p class="text-slate-500 text-base leading-relaxed max-w-2xl mx-auto">Our technical leadership has published in peer-reviewed ML conferences, scaled AI systems to millions of users, and holds expertise in deep learning theory, production ML engineering, and statistical rigor for business-critical decisions.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-12 reveal-element">
+            <div class="about-card text-center py-8">
+              <div class="text-brand-600 mb-4 flex justify-center">
+                <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+              </div>
+              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Top-Tier Institutions</div>
+              <div class="text-sm text-slate-600">Stanford, MIT, CMU, IITs</div>
+            </div>
+            <div class="about-card text-center py-8">
+              <div class="text-brand-600 mb-4 flex justify-center">
+                <i data-lucide="building" class="w-8 h-8"></i>
+              </div>
+              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Fortune 500 Experience</div>
+              <div class="text-sm text-slate-600">Google AI, Microsoft Research, AWS</div>
+            </div>
+            <div class="about-card text-center py-8">
+              <div class="text-brand-600 mb-4 flex justify-center">
+                <i data-lucide="file-text" class="w-8 h-8"></i>
+              </div>
+              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Published Research</div>
+              <div class="text-sm text-slate-600">NeurIPS, ICML, CVPR, ACL</div>
+            </div>
+          </div>
+
+          <div class="reveal-element">
+            <div class="about-card py-8 px-10">
+              <h3 class="text-lg font-display font-semibold text-slate-900 mb-4 text-center">Our Team DNA — Domain Expertise</h3>
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="brain" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Deep Learning Theory</div>
+                    <div class="text-sm text-slate-500">Optimization landscapes, representation learning, neural architecture search</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="server" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Production ML Engineering</div>
+                    <div class="text-sm text-slate-500">Model serving at scale, A/B testing, MLOps infrastructure</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="eye" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Computer Vision</div>
+                    <div class="text-sm text-slate-500">Object detection, image segmentation, visual recognition systems</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="message-square" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Natural Language Processing</div>
+                    <div class="text-sm text-slate-500">LLMs, text classification, semantic search, entity extraction</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Time-Series Forecasting</div>
+                    <div class="text-sm text-slate-500">Demand prediction, anomaly detection, temporal modeling</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-brand-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900 mb-1">Statistical Rigor</div>
+                    <div class="text-sm text-slate-500">Causal inference, experimental design, hypothesis testing</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-10 reveal-element">
+            <blockquote class="text-slate-600 text-lg italic leading-relaxed max-w-2xl mx-auto">
+              "We do not build AI for the sake of novelty. We build defensible, commercially viable systems that create lasting competitive moats."
+            </blockquote>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -449,13 +651,13 @@
                   <input type="text" id="company" name="company" placeholder="Your company name" class="form-input" required />
                 </div>
                 <div class="form-group mb-4">
-                  <label class="form-label" for="subject">Inquiry Type <span class="text-red-500">*</span></label>
+                  <label class="form-label" for="subject">What would you like to discuss? <span class="text-red-500">*</span></label>
                   <select id="subject" name="subject" class="form-input" required>
-                    <option value="">Select an inquiry type</option>
-                    <option value="llm">Custom LLM Development</option>
-                    <option value="ml">ML Model Design</option>
-                    <option value="data">Data Science &amp; Analytics</option>
-                    <option value="product">Platform Development</option>
+                    <option value="">Select an option</option>
+                    <option value="technical">Technical Deep-Dive / Pilot Program</option>
+                    <option value="benchmarks">Performance Benchmarks Review</option>
+                    <option value="partnership">Partnership / Investment Information</option>
+                    <option value="ai-challenge">Specific AI Challenge</option>
                     <option value="other">General Inquiry</option>
                   </select>
                 </div>
@@ -580,3 +782,6 @@
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
 
+
+
+  

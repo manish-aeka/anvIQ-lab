@@ -88,13 +88,26 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
       return `
-        <div class="industry-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""} onclick="location.href='#contact'">
+        <div class="industry-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
           <div class="industry-icon-wrap">
             <i data-lucide="${ind.icon}" class="w-6 h-6 text-brand-600"></i>
           </div>
-          <h3 class="industry-title">${ind.title}</h3>
-          <p class="industry-desc">${ind.desc}</p>
-          <div class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+          <h3 class="industry-title mb-4">${ind.title}</h3>
+          
+          <div class="mb-3">
+            <div class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1">The Problem</div>
+            <p class="text-sm text-slate-600 leading-relaxed">${ind.problem}</p>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Our Solution</div>
+            <p class="text-sm text-slate-600 leading-relaxed">${ind.solution}</p>
+          </div>
+          
+          <div class="mb-4">
+            <div class="text-xs font-semibold text-green-600 uppercase tracking-wider mb-1">The Result</div>
+            <p class="text-sm text-slate-700 font-medium leading-relaxed">${ind.result}</p>
+          </div>
         </div>
       `;
     }).join("");
@@ -141,6 +154,20 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="why-desc">${why.desc}</p>
       </div>
     `).join("");
+  }
+
+  // 7.5. Render Proprietary Intelligence Points
+  const proprietaryIntelPoints = document.getElementById("proprietary-intel-points");
+  if (proprietaryIntelPoints && siteData.textContent.research.proprietaryIntel.points) {
+    proprietaryIntelPoints.innerHTML = siteData.textContent.research.proprietaryIntel.points.map(point => {
+      const [title, desc] = point.split(': ');
+      return `
+        <li class="flex items-start gap-2 text-sm">
+          <i data-lucide="check-circle" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+          <span class="text-slate-600"><strong class="text-slate-900">${title}:</strong> ${desc}</span>
+        </li>
+      `;
+    }).join("");
   }
 
   // 8. Render Contact Section Details
