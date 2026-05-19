@@ -9,15 +9,18 @@ const siteData = {
         { href: "#capabilities", text: "Capabilities" },
         { href: "#industries", text: "Industries" },
         { href: "#research", text: "Research" },
+        { href: "#security", text: "Security" },
+        { href: "#why-us", text: "Why Choose Us" },
+        { href: "#leadership", text: "Leadership" },
         { href: "#contact", text: "Contact" }
       ],
       cta: "Get in Touch"
     },
     hero: {
       overline: "Enterprise-Grade AI Systems",
-      headlineP1: "AI Products With",
-      headlineAccent: "Proven Impact",
-      headlineP2: "Ready for Production",
+      headlineP1: "Proprietary AI Systems That Deliver",
+      headlineAccent: "Measurable ROI",
+      headlineP2: "Not Experiments",
       description: "We engineer production-grade AI infrastructure for enterprises handling sensitive data at scale. Research-validated. Security-hardened. Commercially deployed.",
       btnPrimary: "Request Technical Briefing",
       btnGhost: "View Benchmarks",
@@ -69,8 +72,8 @@ const siteData = {
       description: "Tell us about your data challenge. We will architect the right intelligent solution for you.",
       btnPrimary: "Send Message",
       info: {
-        email: "anviq.ai",
-        location: "India",
+        email: "hello@anviq.ai",
+        location: "Bengaluru, India",
         responseTime: "Within 24 hours",
         socialLinks: [
           { href: "#", icon: "linkedin", label: "LinkedIn" },
