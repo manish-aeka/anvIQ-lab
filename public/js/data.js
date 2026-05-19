@@ -29,7 +29,8 @@ const siteData = {
         { value: "10 TB+", label: "Data Processed" },
         { value: "97.4%*", label: "Accuracy" }
       ],
-      accuracyNote: "*Outperforming industry baselines by 12% in domain-specific classification"
+      accuracyNote: "*Outperforming industry baselines by 12% in domain-specific classification",
+      platformTitle: "AnvIQ Intelligence Platform"
     },
     about: {
       title: "Intelligence Engineered<br />for Business",
@@ -50,7 +51,7 @@ const siteData = {
       description: "We do not ship models without validation. Every AI system we deploy undergoes structured experimentation, statistical hypothesis testing, and performance benchmarking against established baselines. Our research methodology prioritizes reproducibility, robustness, and real-world generalization over synthetic benchmarks.",
       whitepaper: {
         title: "The AnvIQ Framework: Achieving 99.9% Production Reliability in RAG Systems",
-        summary: "Retrieval-Augmented Generation (RAG) systems fail in production due to semantic drift, retrieval precision degradation, and hallucination. Our framework addresses these through custom embedding layers, active learning pipelines, and constrained decoding with citation verification. Deployed across 12 enterprise clients maintaining 99.9% uptime with <2% hallucination rates."
+        summary: "Retrieval-Augmented Generation (RAG) systems fail in production due to semantic drift, retrieval precision degradation, and hallucination. Our framework addresses these through custom embedding layers, active learning pipelines, and constrained decoding with citation verification. Deployed across 10+ enterprise clients maintaining 99.9% uptime with <2% hallucination rates."
       },
       proprietaryIntel: {
         title: "What is Proprietary Intelligence?",
@@ -66,6 +67,14 @@ const siteData = {
     whyUs: {
       title: "Engineered for<br />Enterprise Performance",
       description: "What makes our approach fundamentally different from conventional AI development."
+    },
+    leadership: {
+      headlineP1: "Built by Researchers.",
+      headlineP2: "Deployed by Engineers.",
+      p1: "AnvIQ Labs is led by a team of machine learning researchers and software architects with pedigree from top-tier institutions.",
+      // p2: "Our technical leadership has published in peer-reviewed ML conferences, scaled AI systems to millions of users, and holds expertise in deep learning theory, production ML engineering, and statistical rigor for business-critical decisions.",
+      // teamDNAHeading: "Our Team DNA — Domain Expertise",
+      quote: "We do not build AI for the sake of novelty. We build defensible, commercially viable systems that create lasting competitive moats."
     },
     contact: {
       title: "Let's Build Something<br />Intelligent Together",
@@ -210,5 +219,29 @@ const siteData = {
     { delay: "0.24", icon: "zap", title: "High-Performance Engineering", desc: "Precision-engineered systems combining pure data science with modern AI, delivering results that are both innovative and mathematically sound." },
     { delay: "0.32", icon: "package-2", title: "Product-Focused Innovation", desc: "We are builders, not consultants. Every engagement produces a scalable, commercializable product &mdash; not just a report or a proof of concept." },
     { delay: "0.4", icon: "lightbulb", title: "Domain-Optimized Intelligence", desc: "Context-aware AI grounded in your specific industry knowledge &mdash; not generic outputs from public models, but intelligence tuned to your domain." }
+  ],
+  leadershipCredentials: [
+    // { icon: "graduation-cap", title: "Top-Tier Institutions", desc: "Stanford, MIT, CMU, IITs" },
+    // { icon: "building", title: "Fortune 500 Experience", desc: "Google AI, Microsoft Research, AWS" },
+    // { icon: "file-text", title: "Published Research", desc: "NeurIPS, ICML, CVPR, ACL" }
+  ],
+  leadershipTeamDNA: [
+    { icon: "brain", title: "Deep Learning Theory", desc: "Optimization landscapes, representation learning, neural architecture search" },
+    { icon: "server", title: "Production ML Engineering", desc: "Model serving at scale, A/B testing, MLOps infrastructure" },
+    { icon: "eye", title: "Computer Vision", desc: "Object detection, image segmentation, visual recognition systems" },
+    { icon: "message-square", title: "Natural Language Processing", desc: "LLMs, text classification, semantic search, entity extraction" },
+    { icon: "trending-up", title: "Time-Series Forecasting", desc: "Demand prediction, anomaly detection, temporal modeling" },
+    { icon: "bar-chart-2", title: "Statistical Rigor", desc: "Causal inference, experimental design, hypothesis testing" }
+  ],
+  platformMetrics: [
+    { name: "Custom LLM &mdash; Domain Classifier", trend: "&#9650; 2.1%", value: "97.4%", progress: 97.4, sub: "Accuracy &middot; Fine-tuned on proprietary corpus" },
+    { name: "ML Pipeline &mdash; Predictive Engine", trend: "&#9650; 0.03", value: "F1 0.94", progress: 94, sub: "F1 Score &middot; Bespoke classification model" },
+    { name: "Data Science &mdash; Analytics Layer", trend: "&#9650; 1.2 TB", value: "10 TB+", progress: 88, sub: "Processed &middot; Enterprise-scale datasets" }
+  ],
+  platformFooterStats: [
+    { value: "55+", label: "Models" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "&lt;50ms", label: "Latency" },
+    { value: "4", label: "Errors", dotColor: "bg-red-500" }
   ]
 };

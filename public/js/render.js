@@ -206,6 +206,72 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
+  // 10. Render Leadership Credentials
+  const leadershipCredentialsContainer = document.getElementById("leadership-credentials-container");
+  if (leadershipCredentialsContainer && siteData.leadershipCredentials) {
+    leadershipCredentialsContainer.innerHTML = siteData.leadershipCredentials.map(cred => `
+      <div class="about-card text-center py-8">
+        <div class="text-brand-600 mb-4 flex justify-center">
+          <i data-lucide="${cred.icon}" class="w-8 h-8"></i>
+        </div>
+        <div class="text-2xl font-display font-bold text-slate-900 mb-2">${cred.title}</div>
+        <div class="text-sm text-slate-600">${cred.desc}</div>
+      </div>
+    `).join("");
+  }
+
+  // 11. Render Leadership Team DNA
+  const leadershipTeamDNAContainer = document.getElementById("leadership-team-dna-container");
+  if (leadershipTeamDNAContainer && siteData.leadershipTeamDNA) {
+    leadershipTeamDNAContainer.innerHTML = siteData.leadershipTeamDNA.map(item => `
+      <div class="flex items-start gap-3">
+        <div class="mt-0.5">
+          <i data-lucide="${item.icon}" class="w-5 h-5 text-brand-500"></i>
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-slate-900 mb-1">${item.title}</div>
+          <div class="text-sm text-slate-500">${item.desc}</div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // 12. Render Platform Metrics
+  const platformMetricsContainer = document.getElementById("platform-metrics-container");
+  if (platformMetricsContainer && siteData.platformMetrics) {
+    platformMetricsContainer.innerHTML = siteData.platformMetrics.map(metric => `
+      <div class="metric-row">
+        <div class="metric-header">
+          <span class="metric-name">${metric.name}</span>
+          <div class="flex items-center gap-2">
+            <span class="metric-trend">${metric.trend}</span>
+            <span class="metric-value">${metric.value}</span>
+          </div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width: ${metric.progress}%"></div></div>
+        <div class="metric-sub">${metric.sub}</div>
+      </div>
+    `).join("");
+  }
+
+  // 13. Render Platform Footer Stats
+  const platformFooterStatsContainer = document.getElementById("platform-footer-stats-container");
+  if (platformFooterStatsContainer && siteData.platformFooterStats) {
+    platformFooterStatsContainer.innerHTML = siteData.platformFooterStats.map((stat, i) => {
+      const valueHtml = stat.dotColor
+        ? `<div class="platform-stat-value flex items-center justify-center gap-1"><span class="w-2 h-2 rounded-full ${stat.dotColor} inline-block"></span>${stat.value}</div>`
+        : `<div class="platform-stat-value">${stat.value}</div>`;
+      const divider = i < siteData.platformFooterStats.length - 1 ? '<div class="platform-divider"></div>' : '';
+      return `
+        <div class="platform-stat">
+          ${valueHtml}
+          <div class="platform-stat-label">${stat.label}</div>
+        </div>
+        ${divider}
+      `;
+    }).join("");
+  }
+
   // Initialize Lucide icons on newly rendered elements
   if (window.lucide) {
     lucide.createIcons();

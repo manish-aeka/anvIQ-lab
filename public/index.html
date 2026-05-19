@@ -6,6 +6,8 @@
   <meta name="description" content="AnvIQ Labs &mdash; Research-driven AI technology company building intelligent software products that help businesses make smarter decisions." />
   <title>AnvIQ Labs &mdash; Intelligent AI Products</title>
 
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -205,7 +207,7 @@
                   <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
                   <span class="w-3 h-3 rounded-full bg-green-400"></span>
                 </div>
-                <span class="platform-title">AnvIQ Intelligence Platform</span>
+                <span class="platform-title" data-bind="textContent.hero.platformTitle"></span>
                 <span class="live-badge">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse-slow"></span>
                   Live
@@ -213,65 +215,8 @@
               </div>
 
               <div class="platform-body">
-                <div class="metric-row">
-                  <div class="metric-header">
-                    <span class="metric-name">Custom LLM &mdash; Domain Classifier</span>
-                    <div class="flex items-center gap-2">
-                      <span class="metric-trend">&#9650; 2.1%</span>
-                      <span class="metric-value">97.4%</span>
-                    </div>
-                  </div>
-                  <div class="progress-track"><div class="progress-fill" style="width: 97.4%"></div></div>
-                  <div class="metric-sub">Accuracy &middot; Fine-tuned on proprietary corpus</div>
-                </div>
-
-                <div class="metric-row">
-                  <div class="metric-header">
-                    <span class="metric-name">ML Pipeline &mdash; Predictive Engine</span>
-                    <div class="flex items-center gap-2">
-                      <span class="metric-trend">&#9650; 0.03</span>
-                      <span class="metric-value">F1 0.94</span>
-                    </div>
-                  </div>
-                  <div class="progress-track"><div class="progress-fill" style="width: 94%"></div></div>
-                  <div class="metric-sub">F1 Score &middot; Bespoke classification model</div>
-                </div>
-
-                <div class="metric-row">
-                  <div class="metric-header">
-                    <span class="metric-name">Data Science &mdash; Analytics Layer</span>
-                    <div class="flex items-center gap-2">
-                      <span class="metric-trend">&#9650; 1.2 TB</span>
-                      <span class="metric-value">10 TB+</span>
-                    </div>
-                  </div>
-                  <div class="progress-track"><div class="progress-fill" style="width: 88%"></div></div>
-                  <div class="metric-sub">Processed &middot; Enterprise-scale datasets</div>
-                </div>
-
-                <div class="platform-footer-row">
-                  <div class="platform-stat">
-                    <div class="platform-stat-value">55+</div>
-                    <div class="platform-stat-label">Models</div>
-                  </div>
-                  <div class="platform-divider"></div>
-                  <div class="platform-stat">
-                    <div class="platform-stat-value">99.9%</div>
-                    <div class="platform-stat-label">Uptime</div>
-                  </div>
-                  <div class="platform-divider"></div>
-                  <div class="platform-stat">
-                    <div class="platform-stat-value">&lt;50ms</div>
-                    <div class="platform-stat-label">Latency</div>
-                  </div>
-                  <div class="platform-divider"></div>
-                  <div class="platform-stat">
-                    <div class="platform-stat-value flex items-center justify-center gap-1">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>0
-                    </div>
-                    <div class="platform-stat-label">Errors</div>
-                  </div>
-                </div>
+                <div id="platform-metrics-container"></div>
+                <div class="platform-footer-row" id="platform-footer-stats-container"></div>
               </div>
 
             </div>
@@ -526,101 +471,29 @@
               <span class="w-5 h-px bg-sky-500"></span>
               <span>Leadership &amp; Talent</span>
             </div>
-            <h2 class="section-title mb-6">Built by Researchers.<br />Deployed by Engineers.</h2>
-            <p class="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto mb-8">AnvIQ Labs is led by a team of machine learning researchers and software architects with pedigree from top-tier institutions and Fortune 500 AI labs.</p>
-            <p class="text-slate-500 text-base leading-relaxed max-w-2xl mx-auto">Our technical leadership has published in peer-reviewed ML conferences, scaled AI systems to millions of users, and holds expertise in deep learning theory, production ML engineering, and statistical rigor for business-critical decisions.</p>
+            <h2 class="section-title mb-6">
+              <span data-bind="textContent.leadership.headlineP1"></span><br />
+              <span data-bind="textContent.leadership.headlineP2"></span>
+            </h2>
+            <p class="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto mb-8" data-bind="textContent.leadership.p1"></p>
+            <p class="text-slate-500 text-base leading-relaxed max-w-2xl mx-auto" data-bind="textContent.leadership.p2"></p>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-6 mb-12 reveal-element">
-            <div class="about-card text-center py-8">
-              <div class="text-brand-600 mb-4 flex justify-center">
-                <i data-lucide="graduation-cap" class="w-8 h-8"></i>
-              </div>
-              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Top-Tier Institutions</div>
-              <div class="text-sm text-slate-600">Stanford, MIT, CMU, IITs</div>
-            </div>
-            <div class="about-card text-center py-8">
-              <div class="text-brand-600 mb-4 flex justify-center">
-                <i data-lucide="building" class="w-8 h-8"></i>
-              </div>
-              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Fortune 500 Experience</div>
-              <div class="text-sm text-slate-600">Google AI, Microsoft Research, AWS</div>
-            </div>
-            <div class="about-card text-center py-8">
-              <div class="text-brand-600 mb-4 flex justify-center">
-                <i data-lucide="file-text" class="w-8 h-8"></i>
-              </div>
-              <div class="text-2xl font-display font-bold text-slate-900 mb-2">Published Research</div>
-              <div class="text-sm text-slate-600">NeurIPS, ICML, CVPR, ACL</div>
-            </div>
+          <div class="grid md:grid-cols-3 gap-6 mb-12 reveal-element" id="leadership-credentials-container">
+            <!-- Leadership credential cards dynamically rendered here -->
           </div>
 
           <div class="reveal-element">
             <div class="about-card py-6 px-5 sm:py-8 sm:px-10">
-              <h3 class="text-lg font-display font-semibold text-slate-900 mb-4 text-center">Our Team DNA — Domain Expertise</h3>
-              <div class="grid sm:grid-cols-2 gap-6">
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="brain" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Deep Learning Theory</div>
-                    <div class="text-sm text-slate-500">Optimization landscapes, representation learning, neural architecture search</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="server" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Production ML Engineering</div>
-                    <div class="text-sm text-slate-500">Model serving at scale, A/B testing, MLOps infrastructure</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="eye" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Computer Vision</div>
-                    <div class="text-sm text-slate-500">Object detection, image segmentation, visual recognition systems</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="message-square" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Natural Language Processing</div>
-                    <div class="text-sm text-slate-500">LLMs, text classification, semantic search, entity extraction</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="trending-up" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Time-Series Forecasting</div>
-                    <div class="text-sm text-slate-500">Demand prediction, anomaly detection, temporal modeling</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="mt-0.5">
-                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-brand-500"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-slate-900 mb-1">Statistical Rigor</div>
-                    <div class="text-sm text-slate-500">Causal inference, experimental design, hypothesis testing</div>
-                  </div>
-                </div>
+              <h3 class="text-lg font-display font-semibold text-slate-900 mb-4 text-center" data-bind="textContent.leadership.teamDNAHeading"></h3>
+              <div class="grid sm:grid-cols-2 gap-6" id="leadership-team-dna-container">
+                <!-- Team DNA items dynamically rendered here -->
               </div>
             </div>
           </div>
 
           <div class="text-center mt-10 reveal-element">
-            <blockquote class="text-slate-600 text-lg italic leading-relaxed max-w-2xl mx-auto">
-              "We do not build AI for the sake of novelty. We build defensible, commercially viable systems that create lasting competitive moats."
-            </blockquote>
+            <blockquote class="text-slate-600 text-lg italic leading-relaxed max-w-2xl mx-auto" data-bind="textContent.leadership.quote"></blockquote>
           </div>
         </div>
 
