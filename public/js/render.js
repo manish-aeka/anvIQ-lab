@@ -87,27 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       }
+      // User-friendly card without problem/solution/result
       return `
         <div class="industry-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
           <div class="industry-icon-wrap">
-            <i data-lucide="${ind.icon}" class="w-6 h-6 text-brand-600"></i>
+            <i data-lucide="${ind.icon}" class="w-6 h-6"></i>
           </div>
-          <h3 class="industry-title mb-4">${ind.title}</h3>
-          
-          <div class="mb-3">
-            <div class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1">The Problem</div>
-            <p class="text-sm text-slate-600 leading-relaxed">${ind.problem}</p>
-          </div>
-          
-          <div class="mb-3">
-            <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Our Solution</div>
-            <p class="text-sm text-slate-600 leading-relaxed">${ind.solution}</p>
-          </div>
-          
-          <div class="mb-4">
-            <div class="text-xs font-semibold text-green-600 uppercase tracking-wider mb-1">The Result</div>
-            <p class="text-sm text-slate-700 font-medium leading-relaxed">${ind.result}</p>
-          </div>
+          <h3 class="industry-title">${ind.title}</h3>
+          <p class="industry-desc">${ind.desc ? ind.desc : (ind.problem || "")}</p>
         </div>
       `;
     }).join("");

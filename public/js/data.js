@@ -137,9 +137,9 @@ const siteData = {
       icon: "building-2",
       delay: "",
       title: "Real Estate",
-      problem: "A top-tier North American property aggregator was experiencing 22% variance in automated valuation models, leading to regulatory risk.",
-      solution: "Custom ensemble architecture combining hedonic pricing models with deep learning layers trained on 8.2 TB of MLS transaction data.",
-      result: "18% reduction in appraisal variance. Model now serves $12B+ property portfolio."
+      problem: "A leading Indian property aggregator was experiencing 22% variance in automated valuation models, leading to regulatory risk.",
+      solution: "Custom ensemble architecture combining hedonic pricing models with deep learning layers trained on 8.2 TB of Indian real estate transaction data.",
+      result: "18% reduction in appraisal variance. Model now serves ₹90,000 Cr+ property portfolio."
     },
     {
       icon: "landmark",
@@ -166,8 +166,16 @@ const siteData = {
       result: "Stockout rates decreased to 11%. Inventory carrying costs reduced by $8.4M annually."
     },
     {
-      special: true,
+      icon: "users",
       delay: "0.32",
+      title: "Consumer Business",
+      problem: "A high-growth direct-to-consumer brand was seeing a 45% drop in customer lifetime value (CLV) due to inefficient personalization and generic engagement.",
+      solution: "Hyper-personalized recommendation engine utilizing transformer-based sequence modeling and real-time behavioral intent extraction.",
+      result: "Conversion rates increased by 28%. Repeat purchase rate grew by 35% within the first two quarters of deployment."
+    },
+    {
+      special: true,
+      delay: "0.4",
       icon: "plus",
       title: "Your Industry",
       desc: "We architect intelligent solutions for any data-intensive sector. Bring us your hardest data challenge."
