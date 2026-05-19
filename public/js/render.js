@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (statsContainer && siteData.stats) {
     statsContainer.innerHTML = siteData.stats.map((stat, i) => `
       <div class="stat-block">
-        <div class="stat-value" data-target="${stat.target}" data-suffix="${stat.suffix}">0</div>
+        <div class="stat-value" data-target="${stat.target}" data-suffix="${stat.suffix}"${stat.prefix ? ` data-prefix="${stat.prefix}"` : ""}>0</div>
         <div class="stat-label">${stat.label}</div>
       </div>
       ${i < siteData.stats.length - 1 ? '<div class="stat-divider"></div>' : ''}
@@ -77,24 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
     industriesContainer.innerHTML = siteData.industries.map(ind => {
       if (ind.special) {
         return `
-          <div class="industry-card industry-cta-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
-            <div class="industry-icon-wrap text-brand-600 !bg-brand-50 !border-brand-100">
-              <i data-lucide="${ind.icon}" class="w-6 h-6"></i>
+          <div class="capability-card industry-cta-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
+            <div class="cap-icon" style="background:#eff6ff;border-color:#dbeafe;color:#2563eb;">
+              <i data-lucide="${ind.icon}" class="w-5 h-5"></i>
             </div>
-            <h3 class="industry-title">${ind.title}</h3>
-            <p class="industry-desc">${ind.desc}</p>
-            <a href="#contact" class="btn-primary text-sm px-5 py-2.5 inline-block text-center mt-auto">Start a Conversation</a>
+            <h3 class="capability-title">${ind.title}</h3>
+            <p class="capability-desc">${ind.desc}</p>
+            <div class="capability-tags">
+              ${ind.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+            </div>
+            <a href="#contact" class="btn-primary text-sm px-5 py-2.5 inline-flex items-center justify-center mt-4">Start a Conversation</a>
           </div>
         `;
       }
-      // User-friendly card without problem/solution/result
       return `
-        <div class="industry-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
-          <div class="industry-icon-wrap">
-            <i data-lucide="${ind.icon}" class="w-6 h-6"></i>
+        <div class="capability-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
+          <div class="cap-icon"><i data-lucide="${ind.icon}" class="w-5 h-5"></i></div>
+          <h3 class="capability-title">${ind.title}</h3>
+          <p class="capability-desc">${ind.desc}</p>
+          <div class="capability-tags">
+            ${ind.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
           </div>
-          <h3 class="industry-title">${ind.title}</h3>
-          <p class="industry-desc">${ind.desc ? ind.desc : (ind.problem || "")}</p>
         </div>
       `;
     }).join("");

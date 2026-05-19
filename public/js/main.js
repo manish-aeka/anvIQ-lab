@@ -57,8 +57,17 @@ function initContactForm() {
     const name    = form.name.value;
     const email   = form.email.value;
     const company = form.company.value;
-    const subject = form.subject.value;
     const message = form.message.value;
+
+    const checkedSubjects = Array.from(form.querySelectorAll('input[name="subject"]:checked'));
+    const subjectLabels   = {
+      technical:    "Technical Deep-Dive / Pilot Program",
+      benchmarks:   "Performance Benchmarks Review",
+      partnership:  "Partnership / Investment Information",
+      "ai-challenge": "Specific AI Challenge",
+      other:        "General Inquiry"
+    };
+    const subject = checkedSubjects.map(cb => subjectLabels[cb.value] || cb.value).join(", ");
 
     /* -- Client-side validation -- */
     if (!isNonEmpty(name)) {
@@ -73,9 +82,8 @@ function initContactForm() {
       return;
     }
 
-    if (!isNonEmpty(subject)) {
-      showStatus(statusEl, "Please select an inquiry type.", "error");
-      form.subject.focus();
+    if (checkedSubjects.length === 0) {
+      showStatus(statusEl, "Please select at least one inquiry type.", "error");
       return;
     }
 

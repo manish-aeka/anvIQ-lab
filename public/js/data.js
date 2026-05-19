@@ -119,10 +119,10 @@ const siteData = {
     { num: "04", title: "Data Sovereignty &amp; Security", desc: "Secure AI pipelines with enterprise-grade data integrity throughout." }
   ],
   stats: [
-    { target: "55", suffix: "+", label: "AI Models Deployed" },
-    { target: "10", suffix: "TB+", label: "Data Processed" },
-    { target: "97", suffix: ".4%", label: "Model Accuracy" },
-    { target: "50", suffix: "ms", label: "Avg Latency" }
+    { target: 55,   suffix: "+",   label: "AI Models Deployed" },
+    { target: 10,   suffix: "TB+", label: "Data Processed" },
+    { target: 97.4, suffix: "%",   label: "Model Accuracy" },
+    { target: 50,   prefix: "<",   suffix: "ms", label: "Avg Latency" }
   ],
   capabilities: [
     { icon: "brain-circuit", delay: "", title: "Custom LLM Solutions", desc: "Fine-tuning and optimizing Large Language Models on your private datasets, delivering domain-specific AI assistants with high-context, hallucination-free outputs tailored to your industry.", tags: ["RAG Systems", "Fine-tuning", "Knowledge Intelligence"] },
@@ -137,6 +137,8 @@ const siteData = {
       icon: "building-2",
       delay: "",
       title: "Real Estate",
+      desc: "Automated Valuation Models that reduced appraisal variance by 18% for a national property tech firm &mdash; custom ensemble architecture trained on 8.2 TB of real estate transaction data, serving a &#8377;90,000 Cr+ portfolio.",
+      tags: ["AVM", "Hedonic Pricing", "Valuation AI"],
       problem: "A leading Indian property aggregator was experiencing 22% variance in automated valuation models, leading to regulatory risk.",
       solution: "Custom ensemble architecture combining hedonic pricing models with deep learning layers trained on 8.2 TB of Indian real estate transaction data.",
       result: "18% reduction in appraisal variance. Model now serves ₹90,000 Cr+ property portfolio."
@@ -145,6 +147,8 @@ const siteData = {
       icon: "landmark",
       delay: "0.08",
       title: "Finance",
+      desc: "Real-time fraud detection reducing false-positive rates from 34% to 8.7% for a global FinTech leader processing 2M+ daily transactions &mdash; with 99.2% recall maintained at production scale.",
+      tags: ["Fraud Detection", "Anomaly Detection", "Risk AI"],
       problem: "A global FinTech leader processing 2M+ daily transactions faced 34% false-positive rates in fraud detection, creating customer friction.",
       solution: "Real-time anomaly detection using proprietary feature engineering, graph-based transaction networks, and adaptive thresholding.",
       result: "False-positive rate reduced to 8.7%. Fraud detection precision improved by 41% while maintaining 99.2% recall."
@@ -153,6 +157,8 @@ const siteData = {
       icon: "briefcase",
       delay: "0.16",
       title: "Human Resources",
+      desc: "Predictive retention platform analyzing 120+ employee signals to reduce attrition by 19% across targeted cohorts, recovering $47M annually in a 50,000+ employee multinational organization.",
+      tags: ["Attrition Prediction", "Survival Analysis", "People AI"],
       problem: "A multinational corporation with 50,000+ employees struggled with 28% annual attrition in critical technical roles, costing $47M annually.",
       solution: "Predictive retention platform analyzing 120+ employee signals using survival analysis and gradient-boosted trees.",
       result: "Early-risk identification improved by 67%. HR intervention campaigns reduced attrition by 19% in targeted cohorts."
@@ -161,6 +167,8 @@ const siteData = {
       icon: "shopping-bag",
       delay: "0.24",
       title: "Retail",
+      desc: "Multi-horizon demand forecasting integrating POS data, weather, and competitor signals &mdash; cutting stockout rates from 31% to 11% across 400+ locations, saving $8.4M in annual inventory costs.",
+      tags: ["Demand Forecasting", "Time-Series", "Inventory AI"],
       problem: "A national retail chain with 400+ locations experienced 31% stockout rates during demand surges and 18% inventory waste.",
       solution: "Multi-horizon demand forecasting integrating POS data, weather patterns, promotional calendars, and competitor pricing via hierarchical time-series models.",
       result: "Stockout rates decreased to 11%. Inventory carrying costs reduced by $8.4M annually."
@@ -169,6 +177,8 @@ const siteData = {
       icon: "users",
       delay: "0.32",
       title: "Consumer Business",
+      desc: "Transformer-based recommendation engine leveraging real-time behavioral intent extraction &mdash; boosting conversions by 28% and repeat purchase rates by 35% for a high-growth D2C brand.",
+      tags: ["Recommendation Engine", "CLV Optimization", "Personalization"],
       problem: "A high-growth direct-to-consumer brand was seeing a 45% drop in customer lifetime value (CLV) due to inefficient personalization and generic engagement.",
       solution: "Hyper-personalized recommendation engine utilizing transformer-based sequence modeling and real-time behavioral intent extraction.",
       result: "Conversion rates increased by 28%. Repeat purchase rate grew by 35% within the first two quarters of deployment."
@@ -178,7 +188,8 @@ const siteData = {
       delay: "0.4",
       icon: "plus",
       title: "Your Industry",
-      desc: "We architect intelligent solutions for any data-intensive sector. Bring us your hardest data challenge."
+      desc: "We architect intelligent solutions for any data-intensive sector. Bring us your hardest data challenge.",
+      tags: ["Any Vertical", "Custom Scope", "End-to-End"]
     }
   ],
   researchPillars: [

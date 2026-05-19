@@ -665,6 +665,10 @@ body {
   border: 1px solid transparent;
 }
 
+.problem-badge  { background: rgba(239, 68,  68,  0.08); border-color: rgba(239, 68,  68,  0.20); color: #dc2626; }
+.solution-badge { background: rgba(37,  99,  235, 0.08); border-color: rgba(37,  99,  235, 0.20); color: #2563eb; }
+.result-badge   { background: rgba(16,  185, 129, 0.08); border-color: rgba(16,  185, 129, 0.20); color: #059669; }
+
 .case-text {
   font-size: 0.875rem;
   line-height: 1.5;
@@ -976,16 +980,222 @@ body {
 .reveal-element.revealed { opacity: 1; transform: translateY(0); }
 
 /* ============================================================
-   RESPONSIVE
+   CONTACT FORM — CHECKBOX GROUP
    ============================================================ */
-@media (max-width: 640px) {
-  .stat-block { min-width: 50%; border-bottom: 1px solid #e2e8f0; }
-  .stat-divider { display: none; }
-  .contact-form-card { padding: 1.25rem; }
-  .platform-title { display: none; }
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-@media (max-width: 480px) {
-  .stats-row { flex-direction: column; }
-  .stat-block { width: 100%; }
+.checkbox-group:focus-within {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  color: #475569;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  border-radius: 0.25rem;
+  transition: color 0.15s;
+}
+.checkbox-label:hover { color: #1e293b; }
+
+.checkbox-input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #2563eb;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile-First System
+   Base = mobile → sm (640) → md (768) → lg (1024)
+   ============================================================ */
+
+/* --- Global overflow guard --- */
+html, body { overflow-x: hidden; }
+
+/* ============================================================
+   TOUCH — disable sticky hover transforms on touch devices
+   ============================================================ */
+@media (pointer: coarse) {
+  .about-card:hover,
+  .capability-card:hover,
+  .industry-card:hover,
+  .why-card:hover,
+  .process-step-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #eef2f6;
+  }
+  .about-card:hover::before,
+  .capability-card:hover::before,
+  .industry-card:hover::before,
+  .why-card:hover::before,
+  .process-step-card:hover::before { opacity: 0; }
+
+  .capability-card:hover .cap-icon,
+  .industry-card:hover .industry-icon-wrap,
+  .why-card:hover .why-icon {
+    background: #f8faff;
+    border-color: #eef2f6;
+    color: #2563eb;
+    transform: none;
+  }
+
+  .btn-primary:hover { transform: none; box-shadow: none; }
+  .social-icon:hover, .social-icon-dark:hover { transform: none; }
+}
+
+/* ============================================================
+   TOUCH TARGETS — all interactive elements ≥ 44 × 44 px
+   ============================================================ */
+.btn-primary,
+.btn-ghost {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mobile-nav-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================================
+   iOS ZOOM PREVENTION — inputs must be ≥ 16 px on mobile
+   ============================================================ */
+.form-input { font-size: 1rem; }
+@media (min-width: 640px) { .form-input { font-size: 0.9rem; } }
+
+/* ============================================================
+   MOBILE  (< 640 px)
+   ============================================================ */
+@media (max-width: 639px) {
+
+  /* Hero blobs — shrink so they don't inflate page width */
+  .hero-blob-1 { width: 260px; height: 260px; top: -50px; right: -70px; }
+  .hero-blob-2 { width: 170px; height: 170px; bottom: -30px; left: -50px; }
+
+  /* Section title — stay readable on 320 px screens */
+  .section-title { font-size: clamp(1.625rem, 6.5vw, 2rem); }
+
+  /* Hero micro-stats — tighten gap so 3 items fit in a row */
+  .hero-stats    { gap: 0.875rem; padding: 1.25rem 0; }
+  .hero-stat-value { font-size: 1.375rem; }
+
+  /* ---- Cards ---- */
+  .about-card                         { padding: 1.25rem !important; }
+  .capability-card,
+  .industry-card,
+  .why-card                           { padding: 1.375rem; }
+
+  .cap-icon,
+  .why-icon,
+  .industry-icon-wrap {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .capability-title,
+  .industry-title,
+  .why-title  { font-size: 1.0625rem; }
+
+  .capability-desc,
+  .why-desc   { font-size: 0.875rem; }
+
+  /* ---- Industry case-study content ---- */
+  .industry-content-section { padding-top: 1rem; gap: 0.875rem; }
+  .case-text                { font-size: 0.8125rem; }
+
+  /* ---- Process step cards ---- */
+  .process-step-card { padding: 1.25rem 1rem; gap: 0.875rem; }
+  .step-number       { width: 18px; }
+
+  /* ---- Platform card ---- */
+  .platform-header        { padding: 0.75rem 1rem; }
+  .platform-title         { display: none; }
+  .platform-body          { padding: 0.875rem 1rem 1rem; gap: 0.625rem; }
+  .metric-row             { padding: 0.75rem 0.875rem; }
+  .metric-name            {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 55%;
+  }
+  .metric-sub             { font-size: 0.625rem; }
+  .platform-footer-row    { padding: 0.75rem 0 0.25rem; }
+  .platform-stat-value    { font-size: 0.875rem; }
+  .platform-stat-label    { font-size: 0.5rem; }
+
+  /* ---- Stats bar — 2-column grid ---- */
+  .stat-block {
+    min-width: 50%;
+    padding: 1.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .stat-divider { display: none; }
+
+  /* ---- Contact form ---- */
+  .contact-form-card   { padding: 1.25rem; }
+  .contact-info-value  { font-size: 0.875rem; }
+
+  /* ---- Research section ---- */
+  .research-pillar { gap: 0.75rem; }
+
+  /* ---- Floating scroll button ---- */
+  #floating-scroll-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+  }
+
+  /* ---- Performance: disable shimmer on low-end mobile ---- */
+  .progress-fill::after { display: none; }
+}
+
+/* ============================================================
+   VERY SMALL  (< 480 px) — single-column stats bar
+   ============================================================ */
+@media (max-width: 479px) {
+  .stats-row  { flex-direction: column; }
+  .stat-block { width: 100%; min-width: unset; }
+  .stat-block:last-child { border-bottom: none; }
+}
+
+/* ============================================================
+   TABLET  (640 px – 1023 px)
+   ============================================================ */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .capability-card,
+  .industry-card,
+  .why-card       { padding: 1.875rem; }
+
+  .platform-body  { padding: 1.125rem 1.25rem 1.25rem; }
 }
 

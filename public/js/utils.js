@@ -48,17 +48,20 @@ function easeOutCubic(t) {
 /**
  * Animates a numeric value from 0 to `target` over `duration` ms.
  * @param {HTMLElement} el       - Element whose textContent is updated
- * @param {number}      target   - Final numeric value
+ * @param {number}      target   - Final numeric value (may be decimal)
  * @param {number}      duration - Animation duration in ms
  * @param {string}      suffix   - Optional suffix appended after the number
+ * @param {string}      prefix   - Optional prefix prepended before the number
  */
-function animateCounter(el, target, duration = 1800, suffix = '') {
+function animateCounter(el, target, duration = 1800, suffix = '', prefix = '') {
+  const isDecimal = !Number.isInteger(target);
   const start = performance.now();
   function tick(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    const current = Math.round(easeOutCubic(progress) * target);
-    el.textContent = current + suffix;
+    const current = easeOutCubic(progress) * target;
+    const display = isDecimal ? current.toFixed(1) : Math.round(current);
+    el.textContent = prefix + display + suffix;
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
