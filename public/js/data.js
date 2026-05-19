@@ -72,7 +72,7 @@ const siteData = {
       description: "Tell us about your data challenge. We will architect the right intelligent solution for you.",
       btnPrimary: "Send Message",
       info: {
-        email: "hello@anviq.ai",
+        email: "anviq.ai",
         location: "Bengaluru, India",
         responseTime: "Within 24 hours",
         socialLinks: [
