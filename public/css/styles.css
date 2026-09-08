@@ -1286,3 +1286,30 @@ html, body { overflow-x: hidden; }
   .why-card,
   .process-step-card { padding: 24px; }
 }
+
+/* ============================================================
+   LARGE DISPLAYS — ≥ 1600px
+   The page column is Tailwind's max-w-7xl (1280px), which leaves
+   a 27"+ monitor close to half empty. Only the column widens:
+   the hero type already sits on the top rows of the scale
+   (Heading 07 54px, Display 64px), so there is no larger legal
+   step to grow into (§4). Nothing below 1600px is touched.
+
+   `body ` is specificity, not styling — the Tailwind CDN injects
+   its own .max-w-7xl rule at runtime, and a two-part selector
+   wins over its one-part rule wherever that lands in the cascade.
+   ============================================================ */
+@media (min-width: 1600px) {
+  body .max-w-7xl { max-width: 1536px; }
+
+  /* The only fixed width sitting inside a fluid column: the hero
+     mockup, which otherwise floats in a ~660px half. */
+  body .platform-card.max-w-md { max-width: 512px; }
+}
+
+/* Ultrawide / 4K. Inner reading blocks (max-w-2xl, max-w-5xl)
+   stay at their widths on purpose — this widens the frame, not
+   the line length. */
+@media (min-width: 2200px) {
+  body .max-w-7xl { max-width: 1728px; }
+}
