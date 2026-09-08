@@ -40,7 +40,63 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- 4. Init Floating Scroll ---- */
   initFloatingScroll();
 
+  /* ---- 5. Init Theme Toggle ---- */
+  initThemeToggle();
+
 });
+
+
+/* ============================================================
+   Theme toggle — light / dark
+   A saved choice is already applied by the inline script in
+   <head>; this wires the control and keeps it in sync.
+============================================================ */
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  const root   = document.documentElement;
+  const osDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function storedTheme() {
+    try { return localStorage.getItem('anviq-theme'); } catch (e) { return null; }
+  }
+
+  /* What the page is actually showing: an explicit choice wins,
+     otherwise the OS decides (the CSS is written the same way). */
+  function currentTheme() {
+    return root.getAttribute('data-theme') || (osDark.matches ? 'dark' : 'light');
+  }
+
+  function paint(theme) {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+    /* Re-render through innerHTML rather than swapping the attribute:
+       Lucide replaces the <i> on first paint, so a kept reference is
+       detached by the time we want to change it. Same approach as
+       initFloatingScroll below. */
+    btn.innerHTML = '<i data-lucide="' + (theme === 'dark' ? 'sun' : 'moon') + '" class="w-5 h-5"></i>';
+    if (window.lucide) lucide.createIcons();
+  }
+
+  paint(currentTheme());
+
+  btn.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    /* Always set the attribute, never remove it — an explicit light
+       choice has to beat an OS that says dark. */
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('anviq-theme', next); } catch (e) {}
+    paint(next);
+  });
+
+  /* With no explicit choice the CSS follows the OS, so the button
+     has to follow it too. */
+  osDark.addEventListener('change', () => {
+    if (!storedTheme()) paint(currentTheme());
+  });
+}
 
 
 /* ============================================================

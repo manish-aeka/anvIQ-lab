@@ -406,6 +406,29 @@ body {
   background: var(--anviq-brand-wash);
 }
 
+/* Theme toggle — 20px icon in a 44px target (§10). The icon itself
+   is the non-colour state signal, paired with the aria-label. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--anviq-radius);
+  background: transparent;
+  border: 1px solid var(--cds-border-subtle);
+  color: var(--cds-icon-primary);
+  cursor: pointer;
+  transition:
+    background var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.theme-toggle:hover {
+  background: var(--anviq-brand-wash);
+  border-color: var(--cds-border-strong);
+}
+
 /* Mobile drawer surface. JS only toggles .hidden on this element,
    so its appearance belongs here rather than in the markup. */
 #mobile-menu {
