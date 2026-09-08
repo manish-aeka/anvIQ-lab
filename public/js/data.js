@@ -18,7 +18,7 @@ const siteData = {
     },
     hero: {
       overline: "Enterprise-Grade AI Systems",
-      headlineP1: "Proprietary AI Systems That Deliver",
+      headlineP1: "Proprietary AI Systems<br />That Deliver",
       headlineAccent: "Measurable ROI",
       headlineP2: "Not Experiments",
       description: "We engineer production-grade AI infrastructure for enterprises handling sensitive data at scale. Research-validated. Security-hardened. Commercially deployed.",
