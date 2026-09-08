@@ -56,9 +56,10 @@ document.addEventListener('DOMContentLoaded', function initAnimations() {
           countersTriggered = true;
 
           document.querySelectorAll('.stat-value[data-target]').forEach(el => {
-            const target = parseInt(el.dataset.target, 10);
+            const target = parseFloat(el.dataset.target);
             const suffix = el.dataset.suffix || '';
-            animateCounter(el, target, 1600, suffix);
+            const prefix = el.dataset.prefix || '';
+            animateCounter(el, target, 1600, suffix, prefix);
           });
 
           counterObserver.disconnect();

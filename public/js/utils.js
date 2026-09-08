@@ -48,17 +48,20 @@ function easeOutCubic(t) {
 /**
  * Animates a numeric value from 0 to `target` over `duration` ms.
  * @param {HTMLElement} el       - Element whose textContent is updated
- * @param {number}      target   - Final numeric value
+ * @param {number}      target   - Final numeric value (may be decimal)
  * @param {number}      duration - Animation duration in ms
  * @param {string}      suffix   - Optional suffix appended after the number
+ * @param {string}      prefix   - Optional prefix prepended before the number
  */
-function animateCounter(el, target, duration = 1800, suffix = '') {
+function animateCounter(el, target, duration = 1800, suffix = '', prefix = '') {
+  const isDecimal = !Number.isInteger(target);
   const start = performance.now();
   function tick(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    const current = Math.round(easeOutCubic(progress) * target);
-    el.textContent = current + suffix;
+    const current = easeOutCubic(progress) * target;
+    const display = isDecimal ? current.toFixed(1) : Math.round(current);
+    el.textContent = prefix + display + suffix;
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -75,6 +78,31 @@ function smoothScrollTo(selector, offset = 80) {
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: 'smooth' });
+}
+
+/* ---------- Icon rendering ---------- */
+/**
+ * Renders a single Lucide icon as the only child of `container`.
+ *
+ * Lucide's createIcons() builds an <svg> and calls
+ * parentNode.replaceChild(svg, element), so the original <i> leaves the
+ * document. Any reference captured beforehand is detached, and setting
+ * data-lucide on it changes nothing — which is why an icon swap has to
+ * re-render into the parent rather than mutate the icon element.
+ *
+ * The scan is scoped with `root`; that is the real option name, and
+ * passing anything else (`el`, say) is ignored and silently falls back
+ * to re-rendering every icon on the page.
+ *
+ * @param {HTMLElement} container - Element whose contents become the icon
+ * @param {string}      name      - Lucide icon name, e.g. 'menu'
+ * @param {string}      className - Classes applied to the icon
+ */
+function renderIcon(container, name, className) {
+  if (!container) return;
+  container.innerHTML =
+    '<i data-lucide="' + name + '" class="' + (className || 'w-5 h-5') + '"></i>';
+  if (window.lucide) lucide.createIcons({ root: container });
 }
 
 /* ---------- Form validation helpers ---------- */
@@ -104,11 +132,14 @@ function isNonEmpty(value) {
 function showStatus(el, message, type) {
   if (!el) return;
   el.textContent = message;
+  /* Styling lives in css/styles.css so the colours come from the
+     support tokens and carry a dark value. Replacing className is
+     also what clears the initial `hidden` class. */
   if (type === 'error') {
-    el.className = 'text-red-500 text-sm mt-2 font-medium block';
+    el.className = 'form-status form-status--error';
   } else if (type === 'success') {
-    el.className = 'text-green-500 text-sm mt-2 font-medium block';
+    el.className = 'form-status form-status--success';
   } else {
-    el.className = 'text-sm mt-2 font-medium';
+    el.className = 'form-status';
   }
 }

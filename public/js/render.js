@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (statsContainer && siteData.stats) {
     statsContainer.innerHTML = siteData.stats.map((stat, i) => `
       <div class="stat-block">
-        <div class="stat-value" data-target="${stat.target}" data-suffix="${stat.suffix}">0</div>
+        <div class="stat-value" data-target="${stat.target}" data-suffix="${stat.suffix}"${stat.prefix ? ` data-prefix="${stat.prefix}"` : ""}>0</div>
         <div class="stat-label">${stat.label}</div>
       </div>
       ${i < siteData.stats.length - 1 ? '<div class="stat-divider"></div>' : ''}
@@ -77,24 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
     industriesContainer.innerHTML = siteData.industries.map(ind => {
       if (ind.special) {
         return `
-          <div class="industry-card industry-cta-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
-            <div class="industry-icon-wrap text-brand-600 !bg-brand-50 !border-brand-100">
-              <i data-lucide="${ind.icon}" class="w-6 h-6"></i>
+          <div class="capability-card industry-cta-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
+            <div class="cap-icon" style="background:#eff6ff;border-color:#dbeafe;color:#2563eb;">
+              <i data-lucide="${ind.icon}" class="w-5 h-5"></i>
             </div>
-            <h3 class="industry-title">${ind.title}</h3>
-            <p class="industry-desc">${ind.desc}</p>
-            <a href="#contact" class="btn-primary text-sm px-5 py-2.5 inline-block text-center mt-auto">Start a Conversation</a>
+            <h3 class="capability-title">${ind.title}</h3>
+            <p class="capability-desc">${ind.desc}</p>
+            <div class="capability-tags">
+              ${ind.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+            </div>
+            <a href="#contact" class="btn-primary text-sm px-5 py-2.5 inline-flex items-center justify-center mt-4">Start a Conversation</a>
           </div>
         `;
       }
       return `
-        <div class="industry-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""} onclick="location.href='#contact'">
-          <div class="industry-icon-wrap">
-            <i data-lucide="${ind.icon}" class="w-6 h-6 text-brand-600"></i>
+        <div class="capability-card reveal-element" ${ind.delay ? `data-delay="${ind.delay}"` : ""}>
+          <div class="cap-icon"><i data-lucide="${ind.icon}" class="w-5 h-5"></i></div>
+          <h3 class="capability-title">${ind.title}</h3>
+          <p class="capability-desc">${ind.desc}</p>
+          <div class="capability-tags">
+            ${ind.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
           </div>
-          <h3 class="industry-title">${ind.title}</h3>
-          <p class="industry-desc">${ind.desc}</p>
-          <div class="industry-cta">Explore use case <i data-lucide="arrow-right" class="w-4 h-4"></i></div>
         </div>
       `;
     }).join("");
@@ -143,6 +146,20 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
+  // 7.5. Render Proprietary Intelligence Points
+  const proprietaryIntelPoints = document.getElementById("proprietary-intel-points");
+  if (proprietaryIntelPoints && siteData.textContent.research.proprietaryIntel.points) {
+    proprietaryIntelPoints.innerHTML = siteData.textContent.research.proprietaryIntel.points.map(point => {
+      const [title, desc] = point.split(': ');
+      return `
+        <li class="flex items-start gap-2 text-sm">
+          <i data-lucide="check-circle" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+          <span class="text-slate-600"><strong class="text-slate-900">${title}:</strong> ${desc}</span>
+        </li>
+      `;
+    }).join("");
+  }
+
   // 8. Render Contact Section Details
   const contactEmailLink = document.getElementById("contact-email-link");
   if (contactEmailLink && siteData.textContent.contact.info.email) {
@@ -185,8 +202,74 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerLegalContainer = document.getElementById("footer-legal-container");
   if (footerLegalContainer && siteData.textContent.footer.legalLinks) {
     footerLegalContainer.innerHTML = siteData.textContent.footer.legalLinks.map(link => `
-      <a href="${link.href}" class="text-slate-500 hover:text-slate-300 text-sm transition-colors">${link.text}</a>
+      <a href="${link.href}" class="footer-link">${link.text}</a>
     `).join("");
+  }
+
+  // 10. Render Leadership Credentials
+  const leadershipCredentialsContainer = document.getElementById("leadership-credentials-container");
+  if (leadershipCredentialsContainer && siteData.leadershipCredentials) {
+    leadershipCredentialsContainer.innerHTML = siteData.leadershipCredentials.map(cred => `
+      <div class="about-card text-center py-8">
+        <div class="text-brand-600 mb-4 flex justify-center">
+          <i data-lucide="${cred.icon}" class="w-8 h-8"></i>
+        </div>
+        <div class="text-2xl font-display font-bold text-slate-900 mb-2">${cred.title}</div>
+        <div class="text-sm text-slate-600">${cred.desc}</div>
+      </div>
+    `).join("");
+  }
+
+  // 11. Render Leadership Team DNA
+  const leadershipTeamDNAContainer = document.getElementById("leadership-team-dna-container");
+  if (leadershipTeamDNAContainer && siteData.leadershipTeamDNA) {
+    leadershipTeamDNAContainer.innerHTML = siteData.leadershipTeamDNA.map(item => `
+      <div class="flex items-start gap-3">
+        <div class="mt-0.5">
+          <i data-lucide="${item.icon}" class="w-5 h-5 text-brand-500"></i>
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-slate-900 mb-1">${item.title}</div>
+          <div class="text-sm text-slate-500">${item.desc}</div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // 12. Render Platform Metrics
+  const platformMetricsContainer = document.getElementById("platform-metrics-container");
+  if (platformMetricsContainer && siteData.platformMetrics) {
+    platformMetricsContainer.innerHTML = siteData.platformMetrics.map(metric => `
+      <div class="metric-row">
+        <div class="metric-header">
+          <span class="metric-name">${metric.name}</span>
+          <div class="flex items-center gap-2">
+            <span class="metric-trend">${metric.trend}</span>
+            <span class="metric-value">${metric.value}</span>
+          </div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width: ${metric.progress}%"></div></div>
+        <div class="metric-sub">${metric.sub}</div>
+      </div>
+    `).join("");
+  }
+
+  // 13. Render Platform Footer Stats
+  const platformFooterStatsContainer = document.getElementById("platform-footer-stats-container");
+  if (platformFooterStatsContainer && siteData.platformFooterStats) {
+    platformFooterStatsContainer.innerHTML = siteData.platformFooterStats.map((stat, i) => {
+      const valueHtml = stat.dotColor
+        ? `<div class="platform-stat-value flex items-center justify-center gap-1"><span class="w-2 h-2 rounded-full ${stat.dotColor} inline-block"></span>${stat.value}</div>`
+        : `<div class="platform-stat-value">${stat.value}</div>`;
+      const divider = i < siteData.platformFooterStats.length - 1 ? '<div class="platform-divider"></div>' : '';
+      return `
+        <div class="platform-stat">
+          ${valueHtml}
+          <div class="platform-stat-label">${stat.label}</div>
+        </div>
+        ${divider}
+      `;
+    }).join("");
   }
 
   // Initialize Lucide icons on newly rendered elements

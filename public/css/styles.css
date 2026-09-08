@@ -1,0 +1,1284 @@
+/* ============================================================
+   AnvIQ Labs — styles.css
+
+   Implements .claude/skills/anviq-brand-guide/SKILL.md:
+     - AnvIQ green/gold tokens, three coordinated blocks (§3, §6)
+     - Vend Sans type scale, JetBrains Mono for numbers (§4)
+     - 13-value spacing scale, 4px radius (§5)
+     - Gold as accent only: focus, active indicator (§2 rule 5)
+
+   Every colour in this file resolves to a token defined in the
+   three :root blocks below. No hex, named colour, or rgb()
+   appears outside them (§2 rule 2).
+
+   Stack note: this site keeps its existing Tailwind CDN +
+   vanilla JS stack, so the guide's Carbon components (§7) are
+   out of scope here. Everything else applies, and these classes
+   are the themed plain-CSS fallback §2 rule 1 allows.
+   ============================================================ */
+
+/* ============================================================
+   COLOUR TOKENS — §3
+   Light lives on bare :root. Both dark blocks are required:
+   the media query follows the OS, the [data-theme] block lets
+   an explicit choice win over it.
+   ============================================================ */
+:root {
+  --cds-background: #ffffff;
+  --cds-text-primary: #061b12;
+  --cds-text-secondary: #5b6f65;
+  --cds-link-primary: #1b4332;
+  --cds-button-primary: #1b4332;
+  --cds-button-primary-hover: #061b12;
+  --cds-border-subtle: #dcdfde;
+  --cds-layer-01: #f3f4f3;
+  --cds-layer-02: #eaf3ee;
+  --cds-focus: #d8a657;
+  --cds-icon-primary: #1b4332;
+  --cds-icon-secondary: #5b6f65;
+  --cds-border-interactive: #d8a657;
+  --cds-interactive: #1b4332;
+  --cds-field: #f3f4f3;
+  --cds-field-01: #f3f4f3;
+  --cds-field-02: #ffffff;
+  --cds-layer: #f3f4f3;
+  --cds-border-strong: #8d8d8d;
+  --cds-border-strong-01: #8d8d8d;
+  --cds-icon-interactive: #1b4332;
+  --cds-text-placeholder: #5b6f65;
+  --cds-text-helper: #5b6f65;
+  --cds-support-error: #da1e28;
+  --cds-support-success: #198038;
+  --cds-support-warning: #f1c21b;
+  --cds-support-info: #0043ce;
+  --cds-font-family: "Vend Sans", system-ui, sans-serif;
+  --anviq-accent: #d8a657;
+  --anviq-tint: #eaf3ee;
+  --anviq-text-on-brand: #ffffff;
+  --anviq-text-on-accent: #3a2a05;
+
+  /* Added tokens — surfaces and washes the guide's table has no
+     entry for. Defined here and in both dark blocks (§3). */
+  --anviq-surface-inverse: #061b12;
+  --anviq-text-on-inverse: #eaf3ee;
+  --anviq-text-on-inverse-muted: #9dbfae;
+  --anviq-border-on-inverse: #254b3a;
+  --anviq-chip-on-inverse: #10231b;
+  --anviq-brand-on-inverse: #3e8867;
+  --anviq-nav-scrolled: rgba(255, 255, 255, 0.92);
+  --anviq-shadow-color: rgba(6, 27, 18, 0.10);
+  --anviq-accent-wash: rgba(216, 166, 87, 0.14);
+  --anviq-brand-wash: rgba(27, 67, 50, 0.07);
+  --anviq-blob-brand: rgba(234, 243, 238, 0.90);
+  --anviq-blob-accent: rgba(216, 166, 87, 0.10);
+  --anviq-scrollbar-thumb: #dcdfde;
+  --anviq-scrollbar-thumb-hover: #8d8d8d;
+
+  /* Not colours, so they carry no dark value: one definition. */
+  --anviq-radius: 4px;
+  --cds-duration-fast-01: 70ms;
+  --cds-duration-fast-02: 110ms;
+  --cds-duration-moderate-01: 150ms;
+  --cds-duration-moderate-02: 240ms;
+  --cds-duration-slow-01: 400ms;
+  --cds-duration-slow-02: 700ms;
+  --cds-easing-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --cds-easing-entrance: cubic-bezier(0, 0, 0.38, 0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cds-background: #0b1712;
+    --cds-text-primary: #eaf3ee;
+    --cds-text-secondary: #9dbfae;
+    --cds-link-primary: #3e8867;
+    --cds-button-primary: #3e8867;
+    --cds-button-primary-hover: #eaf3ee;
+    --cds-border-subtle: #254b3a;
+    --cds-layer-01: #10231b;
+    --cds-layer-02: #132b21;
+    --cds-focus: #e7b563;
+    --cds-icon-primary: #3e8867;
+    --cds-icon-secondary: #9dbfae;
+    --cds-border-interactive: #e7b563;
+    --cds-interactive: #3e8867;
+    --cds-field: #10231b;
+    --cds-field-01: #10231b;
+    --cds-field-02: #132b21;
+    --cds-layer: #10231b;
+    --cds-border-strong: #6f6f6f;
+    --cds-border-strong-01: #6f6f6f;
+    --cds-icon-interactive: #3e8867;
+    --cds-text-placeholder: #9dbfae;
+    --cds-text-helper: #9dbfae;
+    --cds-support-error: #ff8389;
+    --cds-support-success: #42be65;
+    --cds-support-warning: #f1c21b;
+    --cds-support-info: #4589ff;
+    --cds-notification-background-success: #0e3b23;
+    --cds-notification-background-warning: #3a2d0d;
+    --cds-notification-background-error: #2a1210;
+    --cds-notification-background-info: #0f1c3d;
+    --anviq-accent: #e7b563;
+    --anviq-tint: #132b21;
+
+    --anviq-surface-inverse: #061b12;
+    --anviq-text-on-inverse: #eaf3ee;
+    --anviq-text-on-inverse-muted: #9dbfae;
+    --anviq-border-on-inverse: #254b3a;
+    --anviq-chip-on-inverse: #132b21;
+    --anviq-brand-on-inverse: #3e8867;
+    --anviq-nav-scrolled: rgba(11, 23, 18, 0.92);
+    --anviq-shadow-color: rgba(0, 0, 0, 0.50);
+    --anviq-accent-wash: rgba(231, 181, 99, 0.16);
+    --anviq-brand-wash: rgba(62, 136, 103, 0.14);
+    --anviq-blob-brand: rgba(19, 43, 33, 0.90);
+    --anviq-blob-accent: rgba(231, 181, 99, 0.08);
+    --anviq-scrollbar-thumb: #254b3a;
+    --anviq-scrollbar-thumb-hover: #6f6f6f;
+  }
+}
+
+/* Same declarations as the media block above — an explicit
+   choice of dark must win even when the OS says light (§6). */
+:root[data-theme="dark"] {
+  --cds-background: #0b1712;
+  --cds-text-primary: #eaf3ee;
+  --cds-text-secondary: #9dbfae;
+  --cds-link-primary: #3e8867;
+  --cds-button-primary: #3e8867;
+  --cds-button-primary-hover: #eaf3ee;
+  --cds-border-subtle: #254b3a;
+  --cds-layer-01: #10231b;
+  --cds-layer-02: #132b21;
+  --cds-focus: #e7b563;
+  --cds-icon-primary: #3e8867;
+  --cds-icon-secondary: #9dbfae;
+  --cds-border-interactive: #e7b563;
+  --cds-interactive: #3e8867;
+  --cds-field: #10231b;
+  --cds-field-01: #10231b;
+  --cds-field-02: #132b21;
+  --cds-layer: #10231b;
+  --cds-border-strong: #6f6f6f;
+  --cds-border-strong-01: #6f6f6f;
+  --cds-icon-interactive: #3e8867;
+  --cds-text-placeholder: #9dbfae;
+  --cds-text-helper: #9dbfae;
+  --cds-support-error: #ff8389;
+  --cds-support-success: #42be65;
+  --cds-support-warning: #f1c21b;
+  --cds-support-info: #4589ff;
+  --cds-notification-background-success: #0e3b23;
+  --cds-notification-background-warning: #3a2d0d;
+  --cds-notification-background-error: #2a1210;
+  --cds-notification-background-info: #0f1c3d;
+  --anviq-accent: #e7b563;
+  --anviq-tint: #132b21;
+
+  --anviq-surface-inverse: #061b12;
+  --anviq-text-on-inverse: #eaf3ee;
+  --anviq-text-on-inverse-muted: #9dbfae;
+  --anviq-border-on-inverse: #254b3a;
+  --anviq-chip-on-inverse: #132b21;
+  --anviq-brand-on-inverse: #3e8867;
+  --anviq-nav-scrolled: rgba(11, 23, 18, 0.92);
+  --anviq-shadow-color: rgba(0, 0, 0, 0.50);
+  --anviq-accent-wash: rgba(231, 181, 99, 0.16);
+  --anviq-brand-wash: rgba(62, 136, 103, 0.14);
+  --anviq-blob-brand: rgba(19, 43, 33, 0.90);
+  --anviq-blob-accent: rgba(231, 181, 99, 0.08);
+  --anviq-scrollbar-thumb: #254b3a;
+  --anviq-scrollbar-thumb-hover: #6f6f6f;
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--cds-background);
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family);
+  font-size: 16px;                          /* Body 02 */
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Visible focus ring — gold, paired with an outline so colour is
+   never the only signal (§12). */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--cds-focus);
+  outline-offset: 2px;
+  border-radius: var(--anviq-radius);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar        { width: 8px; }
+::-webkit-scrollbar-track  { background: var(--cds-background); }
+::-webkit-scrollbar-thumb  { background: var(--anviq-scrollbar-thumb); border-radius: var(--anviq-radius); }
+::-webkit-scrollbar-thumb:hover { background: var(--anviq-scrollbar-thumb-hover); }
+
+/* ============================================================
+   SECTION ALTERNATION
+   ============================================================ */
+.section-alt { background-color: var(--cds-layer-02); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(96px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-blob-1 {
+  width: 640px; height: 640px;
+  top: -160px; right: -80px;
+  background: var(--anviq-blob-brand);
+}
+.hero-blob-2 {
+  width: 416px; height: 416px;
+  bottom: -80px; left: -64px;
+  background: var(--anviq-blob-accent);
+}
+
+/* Hero headline — Heading 05 stepping up to Heading 07 (§4).
+   Oldenburg is reserved for .display-title below; the running
+   part of a three-line hero is where "Oldenburg does not fit". */
+.hero-headline {
+  font-family: var(--cds-font-family);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--cds-text-primary);
+  margin-bottom: 24px;
+}
+@media (min-width: 760px) {
+  .hero-headline { font-size: 42px; font-weight: 300; }
+}
+@media (min-width: 1056px) {
+  .hero-headline { font-size: 54px; font-weight: 300; }
+}
+
+/* The one Display moment on the site (§4). */
+.display-title {
+  font-family: "Oldenburg", cursive;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: var(--cds-button-primary);
+  display: block;
+}
+@media (min-width: 1056px) {
+  .display-title { font-size: 64px; }
+}
+
+.hero-description {
+  color: var(--cds-text-secondary);
+  font-size: 16px;                          /* Body 02 */
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+@media (min-width: 1056px) {
+  .hero-description { margin: 0 0 40px 0; }
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--cds-border-subtle);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media (min-width: 1056px) {
+  .hero-stats { justify-content: flex-start; }
+}
+
+.hero-stat-item { text-align: center; }
+@media (min-width: 1056px) {
+  .hero-stat-item { text-align: left; }
+}
+
+/* Numbers use JetBrains Mono — tabular figures (§4). */
+.hero-stat-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px;                          /* Heading 04 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.hero-stat-label {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--cds-border-subtle);
+  display: none;
+}
+@media (min-width: 760px) {
+  .hero-stat-divider { display: block; }
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+#navbar { background: transparent; }
+
+#navbar.scrolled {
+  background: var(--anviq-nav-scrolled);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--cds-border-subtle);
+}
+
+/* Logo — light artwork on light surfaces, white on inverse (§11).
+   Swapped by CSS only, so no JS behaviour changes. */
+.site-logo { width: 160px; height: auto; display: block; }
+.site-logo--inverse { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .site-logo--default { display: none; }
+  :root:not([data-theme="light"]) .site-logo--inverse { display: block; }
+}
+:root[data-theme="dark"] .site-logo--default { display: none; }
+:root[data-theme="dark"] .site-logo--inverse { display: block; }
+
+/* The navbar logo sits in a 64px bar, so it renders smaller than
+   the 160px reference; the footer below uses the full 160px. */
+.nav-logo .site-logo { width: 128px; }
+
+.nav-link {
+  padding: 4px 12px;
+  border-radius: var(--anviq-radius);
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  transition:
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    background-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    box-shadow var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.nav-link:hover {
+  color: var(--cds-text-primary);
+  background-color: var(--anviq-brand-wash);
+}
+
+/* Active nav item: gold indicator plus a weight change, so state
+   is never signalled by colour alone (§12). */
+.nav-link.active {
+  color: var(--cds-text-primary);
+  font-weight: 600;
+  background-color: var(--anviq-accent-wash);
+  box-shadow: inset 0 -2px 0 var(--cds-border-interactive);
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--anviq-radius);
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  transition:
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    background-color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.mobile-nav-link:hover {
+  color: var(--cds-text-primary);
+  background: var(--anviq-brand-wash);
+}
+
+/* Theme menu — light / dark / system in a dropdown.
+   Opens on hover for a mouse, and on click or ArrowDown for touch and
+   keyboard; the hover binding is applied only where hovering is real
+   (see initThemeMenu). The list is a DOM child of the wrapper, so
+   moving the pointer onto it does not fire mouseleave. */
+.theme-menu { position: relative; }
+
+/* Icon-only trigger: a 20px glyph centred in a 44px target (§10).
+   Borderless, matching the hamburger beside it — the background wash
+   is what marks hover and the open state. border:0 is explicit because
+   buttons carry a UA border of their own. */
+.theme-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--anviq-radius);
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.theme-menu__trigger:hover,
+.theme-menu__trigger[aria-expanded="true"] {
+  background: var(--anviq-brand-wash);
+}
+.theme-menu__icon {
+  display: inline-flex;
+  color: var(--cds-icon-primary);
+}
+
+.theme-menu__list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  margin-top: 4px;
+  background: var(--cds-background);
+  border: 1px solid var(--cds-border-subtle);
+  border-radius: var(--anviq-radius);
+  box-shadow: 0 8px 24px var(--anviq-shadow-color);
+  z-index: 60;
+}
+/* Author display beats the UA rule for [hidden], so restate it or the
+   menu renders open. */
+.theme-menu__list[hidden] { display: none; }
+
+.theme-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--anviq-radius);
+  background: transparent;
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family);
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--cds-duration-fast-02) var(--cds-easing-standard);
+}
+.theme-menu__item:hover { background: var(--anviq-tint); }
+.theme-menu__item > span { flex: 1; }
+
+/* The check is the state signal, so selection is not carried by colour
+   alone (§12); aria-checked carries it for assistive tech. */
+.theme-menu__check {
+  color: var(--cds-icon-interactive);
+  visibility: hidden;
+  flex-shrink: 0;
+}
+.theme-menu__item[aria-checked="true"] { background: var(--anviq-brand-wash); }
+.theme-menu__item[aria-checked="true"] .theme-menu__check { visibility: visible; }
+
+/* Mobile drawer surface. JS only toggles .hidden on this element,
+   so its appearance belongs here rather than in the markup. */
+#mobile-menu {
+  background: var(--cds-background);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ============================================================
+   BUTTONS
+   Square 4px corners — the guide allows exactly one radius (§5).
+   ============================================================ */
+.btn-primary {
+  display: inline-block;
+  background: var(--cds-button-primary);
+  color: var(--anviq-text-on-brand);
+  font-size: 14px;                          /* Heading 01 */
+  font-weight: 600;
+  border-radius: var(--anviq-radius);
+  border: 1px solid var(--cds-button-primary);
+  transition:
+    background-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+  text-align: center;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn-primary:hover {
+  background: var(--cds-button-primary-hover);
+  border-color: var(--cds-button-primary-hover);
+}
+/* In dark mode the hover token is a light green, so the label has
+   to flip to keep 4.5:1 (§12). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btn-primary:hover { color: var(--cds-text-primary); }
+}
+:root[data-theme="dark"] .btn-primary:hover { color: var(--cds-text-primary); }
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--cds-link-primary);
+  font-size: 14px;                          /* Heading 01 */
+  font-weight: 600;
+  border-radius: var(--anviq-radius);
+  border: 1px solid var(--cds-button-primary);
+  transition:
+    background-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+  text-align: center;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn-ghost:hover {
+  background: var(--anviq-brand-wash);
+  color: var(--cds-button-primary);
+}
+
+/* ============================================================
+   SECTION TYPOGRAPHY
+   ============================================================ */
+/* Eyebrow label — Label 01. Gold lives in the rule beside it,
+   never in the text (§2 rule 5). */
+.section-overline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  color: var(--cds-text-secondary);
+}
+
+/* Section titles sit one step below the hero: Heading 06 at
+   desktop, stepping down the scale rather than off it. */
+.section-title {
+  font-family: var(--cds-font-family);
+  font-size: 28px;                          /* Heading 04 */
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--cds-text-primary);
+}
+@media (min-width: 760px) {
+  .section-title { font-size: 32px; }       /* Heading 05 */
+}
+@media (min-width: 1056px) {
+  .section-title { font-size: 42px; font-weight: 300; }
+}
+
+.accent-text { color: var(--cds-button-primary); }
+
+/* ============================================================
+   PLATFORM CARD (hero mockup)
+   ============================================================ */
+.platform-card {
+  border-radius: var(--anviq-radius);
+  overflow: hidden;
+  border: 1px solid var(--cds-border-subtle);
+  background: var(--cds-background);
+  box-shadow: 0 8px 32px var(--anviq-shadow-color);
+  position: relative;
+}
+
+.platform-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--cds-layer-01);
+  border-bottom: 1px solid var(--cds-border-subtle);
+  position: relative;
+  z-index: 1;
+}
+
+.window-dots { display: flex; gap: 4px; flex-shrink: 0; }
+
+.platform-title {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  margin-right: 48px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-support-success);
+  background: var(--anviq-brand-wash);
+  border: 1px solid var(--cds-border-subtle);
+  padding: 2px 8px;
+  border-radius: var(--anviq-radius);
+}
+
+.platform-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle);
+  transition:
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    background var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.metric-row:hover {
+  border-color: var(--cds-border-interactive);
+  background: var(--anviq-tint);
+}
+
+.metric-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.metric-name {
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+}
+.metric-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;                          /* Code 02 */
+  font-weight: 400;
+  color: var(--cds-button-primary);
+}
+.metric-sub {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+}
+.metric-trend {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;                          /* Code 01 */
+  font-weight: 400;
+  color: var(--cds-support-success);
+  padding: 2px 4px;
+  border-radius: var(--anviq-radius);
+  background: var(--anviq-brand-wash);
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-border-subtle);
+  overflow: hidden;
+}
+/* animations.js reads and restores the inline width here — the
+   transition is what makes that read animate. */
+.progress-fill {
+  height: 100%;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-button-primary);
+  transition: width var(--cds-duration-slow-02) var(--cds-easing-entrance);
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 4px 0;
+  border-top: 1px solid var(--cds-border-subtle);
+  margin-top: 4px;
+}
+.platform-stat { text-align: center; flex: 1; }
+.platform-stat-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;                          /* Heading 03 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.platform-stat-label {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+}
+.platform-divider { width: 1px; align-self: stretch; background: var(--cds-border-subtle); }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.principle-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--cds-border-subtle);
+}
+.principle-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;                          /* Code 01 */
+  font-weight: 400;
+  color: var(--cds-button-primary);
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 24px;
+}
+
+/* One card treatment, shared by every tile on the page. The gold
+   top rule is the hover indicator — an accent, not a fill (§2). */
+.about-card,
+.capability-card,
+.why-card,
+.process-step-card {
+  padding: 32px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle);
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--cds-duration-moderate-02) var(--cds-easing-standard),
+    background var(--cds-duration-moderate-02) var(--cds-easing-standard),
+    transform var(--cds-duration-moderate-02) var(--cds-easing-standard),
+    box-shadow var(--cds-duration-moderate-02) var(--cds-easing-standard);
+}
+.about-card::before,
+.capability-card::before,
+.why-card::before,
+.process-step-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cds-border-interactive);
+  opacity: 0;
+  transition: opacity var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.about-card:hover,
+.capability-card:hover,
+.why-card:hover,
+.process-step-card:hover {
+  border-color: var(--cds-border-strong);
+  box-shadow: 0 8px 24px var(--anviq-shadow-color);
+  transform: translateY(-2px);
+}
+.about-card:hover::before,
+.capability-card:hover::before,
+.why-card:hover::before,
+.process-step-card:hover::before { opacity: 1; }
+
+.capability-card,
+.why-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ============================================================
+   CARD INTERNALS — capabilities, industries, why-us
+   ============================================================ */
+.cap-icon,
+.why-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-background);
+  border: 1px solid var(--cds-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cds-icon-primary);
+  margin-bottom: 24px;
+  transition:
+    background var(--cds-duration-moderate-02) var(--cds-easing-standard),
+    border-color var(--cds-duration-moderate-02) var(--cds-easing-standard),
+    color var(--cds-duration-moderate-02) var(--cds-easing-standard);
+}
+.capability-card:hover .cap-icon,
+.why-card:hover .why-icon {
+  background: var(--cds-button-primary);
+  border-color: var(--cds-button-primary);
+  color: var(--anviq-text-on-brand);
+}
+
+.capability-title,
+.why-title {
+  font-family: var(--cds-font-family);
+  font-size: 20px;                          /* Heading 03 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.capability-desc,
+.why-desc {
+  color: var(--cds-text-secondary);
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+.why-desc { margin-bottom: 0; }
+
+.capability-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  padding: 2px 8px;
+  border-radius: var(--anviq-radius);
+  background: var(--anviq-tint);
+  border: 1px solid var(--cds-border-subtle);
+  color: var(--cds-text-primary);
+}
+
+/* "Your Industry" tile — rendered by render.js as
+   .capability-card.industry-cta-card. */
+.industry-cta-card {
+  background: var(--anviq-tint);
+  border-color: var(--cds-border-interactive);
+}
+.industry-cta-card::before { display: none; }
+.industry-cta-card:hover { transform: none; }
+
+/* ============================================================
+   RESEARCH
+   ============================================================ */
+.research-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--cds-border-subtle);
+}
+
+.pillar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--anviq-radius);
+  background: var(--anviq-tint);
+  border: 1px solid var(--cds-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cds-icon-primary);
+  flex-shrink: 0;
+}
+
+.process-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.process-step-card:hover .step-header i { color: var(--cds-icon-primary); }
+
+.step-number {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;                          /* Code 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  padding-top: 4px;
+  flex-shrink: 0;
+  width: 24px;
+}
+.step-content { flex: 1; }
+.step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.step-title {
+  font-size: 16px;                          /* Heading 02 */
+  font-weight: 600;
+  color: var(--cds-text-primary);
+}
+.step-desc {
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cds-border-subtle);
+  border-radius: var(--anviq-radius);
+  overflow: hidden;
+  background: var(--cds-background);
+}
+
+.stat-block {
+  flex: 1;
+  min-width: 160px;
+  text-align: center;
+  padding: 40px 24px;
+}
+.stat-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--cds-border-subtle);
+}
+/* animateCounter() writes into this element — Heading 05 is the
+   "number that reads at a glance" row (§4). */
+.stat-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--cds-text-primary);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-form-card {
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle);
+  border-radius: var(--anviq-radius);
+  padding: 32px;
+}
+
+.form-group { display: flex; flex-direction: column; }
+.form-label {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  margin-bottom: 4px;
+}
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-field-02);
+  border: 1px solid var(--cds-border-strong);
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family);
+  font-weight: 400;
+  outline: none;
+  transition:
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    box-shadow var(--cds-duration-moderate-01) var(--cds-easing-standard);
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: var(--cds-text-placeholder); }
+.form-input:focus {
+  border-color: var(--cds-border-interactive);
+  box-shadow: 0 0 0 2px var(--anviq-accent-wash);
+}
+.form-input option { background: var(--cds-field-02); color: var(--cds-text-primary); }
+
+/* Status line written by showStatus() in utils.js. Colour is
+   paired with a leading glyph so it is not the only signal. */
+.form-status { font-size: 14px; font-weight: 400; margin-top: 8px; display: block; }
+.form-status--error { color: var(--cds-support-error); }
+.form-status--success { color: var(--cds-support-success); }
+.form-status--error::before { content: "\26A0\FE0E  "; }
+.form-status--success::before { content: "\2713  "; }
+
+.contact-info-row { display: flex; align-items: center; gap: 16px; }
+.contact-info-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--anviq-radius);
+  background: var(--anviq-tint);
+  border: 1px solid var(--cds-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-info-label {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  color: var(--cds-text-secondary);
+  margin-bottom: 2px;
+}
+.contact-info-value {
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--cds-field-02);
+  border: 1px solid var(--cds-border-strong);
+  border-radius: var(--anviq-radius);
+  transition:
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    box-shadow var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.checkbox-group:focus-within {
+  border-color: var(--cds-border-interactive);
+  box-shadow: 0 0 0 2px var(--anviq-accent-wash);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--cds-text-primary);
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--cds-duration-fast-02) var(--cds-easing-standard);
+}
+.checkbox-label:hover { color: var(--cds-link-primary); }
+
+.checkbox-input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--cds-interactive);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER — always an inverse surface, in both themes
+   ============================================================ */
+.site-footer {
+  background: var(--anviq-surface-inverse);
+  border-top: 1px solid var(--anviq-border-on-inverse);
+}
+.site-footer p { color: var(--anviq-text-on-inverse-muted); }
+
+.footer-heading {
+  font-size: 12px;                          /* Label 01 */
+  font-weight: 400;
+  color: var(--anviq-text-on-inverse-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  margin-bottom: 16px;
+}
+.footer-link {
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  color: var(--anviq-text-on-inverse-muted);
+  transition: color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.footer-link:hover { color: var(--anviq-text-on-inverse); }
+
+.footer-divider { border-top: 1px solid var(--anviq-border-on-inverse); }
+
+/* ============================================================
+   SOCIAL ICONS
+   ============================================================ */
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--anviq-radius);
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cds-icon-secondary);
+  transition:
+    background var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.social-icon:hover {
+  background: var(--anviq-tint);
+  border-color: var(--cds-border-interactive);
+  color: var(--cds-icon-interactive);
+}
+
+.social-icon-dark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--anviq-radius);
+  background: var(--anviq-chip-on-inverse);
+  border: 1px solid var(--anviq-border-on-inverse);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--anviq-text-on-inverse-muted);
+  transition:
+    background var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
+    color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+}
+.social-icon-dark:hover {
+  border-color: var(--cds-border-interactive);
+  color: var(--anviq-text-on-inverse);
+}
+
+/* ============================================================
+   FLOATING SCROLL BUTTON
+   main.js toggles the opacity/pointer-events utilities and swaps
+   the icon; only the skin is set here.
+   ============================================================ */
+#floating-scroll-btn {
+  background: var(--cds-button-primary);
+  color: var(--anviq-text-on-brand);
+  border-radius: var(--anviq-radius);
+  border: 1px solid var(--cds-button-primary);
+}
+#floating-scroll-btn:hover {
+  background: var(--cds-button-primary-hover);
+  border-color: var(--cds-button-primary-hover);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #floating-scroll-btn:hover { color: var(--cds-text-primary); }
+}
+:root[data-theme="dark"] #floating-scroll-btn:hover { color: var(--cds-text-primary); }
+
+/* ============================================================
+   SCROLL REVEAL — animations.js adds .revealed
+   ============================================================ */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--cds-duration-slow-01) var(--cds-easing-entrance),
+    transform var(--cds-duration-slow-01) var(--cds-easing-entrance);
+}
+.reveal-element.revealed { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-element { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* ============================================================
+   RESPONSIVE — guide breakpoints: 760px, 1056px
+   ============================================================ */
+html, body { overflow-x: hidden; }
+
+/* ---------- Touch targets ≥ 44px (§10, §12) ---------- */
+.btn-primary,
+.btn-ghost {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-link { min-height: 40px; display: inline-flex; align-items: center; }
+.mobile-nav-link { min-height: 44px; display: flex; align-items: center; }
+
+/* ---------- iOS zoom prevention: inputs ≥ 16px on mobile ---------- */
+.form-input { font-size: 16px; }            /* Body 02 */
+@media (min-width: 760px) { .form-input { font-size: 14px; } }  /* Body 01 */
+
+/* ---------- Touch: drop sticky hover transforms ---------- */
+@media (pointer: coarse) {
+  .about-card:hover,
+  .capability-card:hover,
+  .why-card:hover,
+  .process-step-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--cds-border-subtle);
+  }
+  .about-card:hover::before,
+  .capability-card:hover::before,
+  .why-card:hover::before,
+  .process-step-card:hover::before { opacity: 0; }
+
+  .capability-card:hover .cap-icon,
+  .why-card:hover .why-icon {
+    background: var(--cds-background);
+    border-color: var(--cds-border-subtle);
+    color: var(--cds-icon-primary);
+  }
+}
+
+/* ---------- Mobile (< 760px) ---------- */
+@media (max-width: 759px) {
+  .hero-blob-1 { width: 256px; height: 256px; top: -48px; right: -64px; }
+  .hero-blob-2 { width: 160px; height: 160px; bottom: -32px; left: -48px; }
+
+  .hero-stats { gap: 16px; padding: 16px 0; }
+
+  .about-card,
+  .capability-card,
+  .why-card,
+  .process-step-card { padding: 16px; }
+
+  .cap-icon,
+  .why-icon { width: 40px; height: 40px; margin-bottom: 16px; }
+
+  .process-step-card { gap: 12px; }
+  .step-number { width: 16px; }
+
+  .platform-header { padding: 12px; }
+  .platform-title { display: none; }
+  .platform-body { padding: 12px; gap: 8px; }
+  .metric-row { padding: 8px 12px; }
+  .metric-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 55%;
+  }
+  .platform-footer-row { padding: 12px 0 4px; }
+
+  .stat-block {
+    min-width: 50%;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--cds-border-subtle);
+  }
+  .stat-divider { display: none; }
+
+  .contact-form-card { padding: 16px; }
+  .research-pillar { gap: 12px; }
+
+  #floating-scroll-btn { bottom: 16px; right: 16px; }
+}
+
+/* ---------- Very small (< 480px): single-column stats ---------- */
+@media (max-width: 479px) {
+  .stats-row { flex-direction: column; }
+  .stat-block { width: 100%; min-width: unset; }
+  .stat-block:last-child { border-bottom: none; }
+}
+
+/* ---------- Tablet (760px – 1055px) ---------- */
+@media (min-width: 760px) and (max-width: 1055px) {
+  .about-card,
+  .capability-card,
+  .why-card,
+  .process-step-card { padding: 24px; }
+}
