@@ -406,28 +406,87 @@ body {
   background: var(--anviq-brand-wash);
 }
 
-/* Theme toggle — 20px icon in a 44px target (§10). The icon itself
-   is the non-colour state signal, paired with the aria-label. */
-.theme-toggle {
+/* Theme menu — light / dark / system in a dropdown.
+   Opens on hover for a mouse, and on click or ArrowDown for touch and
+   keyboard; the hover binding is applied only where hovering is real
+   (see initThemeMenu). The list is a DOM child of the wrapper, so
+   moving the pointer onto it does not fire mouseleave. */
+.theme-menu { position: relative; }
+
+/* Icon-only trigger: a 20px glyph centred in a 44px target (§10).
+   Borderless, matching the hamburger beside it — the background wash
+   is what marks hover and the open state. border:0 is explicit because
+   buttons carry a UA border of their own. */
+.theme-menu__trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
+  border: 0;
   border-radius: var(--anviq-radius);
   background: transparent;
-  border: 1px solid var(--cds-border-subtle);
-  color: var(--cds-icon-primary);
   cursor: pointer;
-  transition:
-    background var(--cds-duration-moderate-01) var(--cds-easing-standard),
-    border-color var(--cds-duration-moderate-01) var(--cds-easing-standard),
-    color var(--cds-duration-moderate-01) var(--cds-easing-standard);
+  transition: background var(--cds-duration-moderate-01) var(--cds-easing-standard);
 }
-.theme-toggle:hover {
+.theme-menu__trigger:hover,
+.theme-menu__trigger[aria-expanded="true"] {
   background: var(--anviq-brand-wash);
-  border-color: var(--cds-border-strong);
 }
+.theme-menu__icon {
+  display: inline-flex;
+  color: var(--cds-icon-primary);
+}
+
+.theme-menu__list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  margin-top: 4px;
+  background: var(--cds-background);
+  border: 1px solid var(--cds-border-subtle);
+  border-radius: var(--anviq-radius);
+  box-shadow: 0 8px 24px var(--anviq-shadow-color);
+  z-index: 60;
+}
+/* Author display beats the UA rule for [hidden], so restate it or the
+   menu renders open. */
+.theme-menu__list[hidden] { display: none; }
+
+.theme-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--anviq-radius);
+  background: transparent;
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family);
+  font-size: 14px;                          /* Body 01 */
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--cds-duration-fast-02) var(--cds-easing-standard);
+}
+.theme-menu__item:hover { background: var(--anviq-tint); }
+.theme-menu__item > span { flex: 1; }
+
+/* The check is the state signal, so selection is not carried by colour
+   alone (§12); aria-checked carries it for assistive tech. */
+.theme-menu__check {
+  color: var(--cds-icon-interactive);
+  visibility: hidden;
+  flex-shrink: 0;
+}
+.theme-menu__item[aria-checked="true"] { background: var(--anviq-brand-wash); }
+.theme-menu__item[aria-checked="true"] .theme-menu__check { visibility: visible; }
 
 /* Mobile drawer surface. JS only toggles .hidden on this element,
    so its appearance belongs here rather than in the markup. */

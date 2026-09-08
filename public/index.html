@@ -8,11 +8,16 @@
 
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
 
-  <!-- Theme — applied before the stylesheet so a saved choice never flashes -->
+  <!-- Theme — applied before the stylesheet so a saved choice never
+       flashes. Only light and dark are stamped; "system" is the absence
+       of the attribute, which is what makes the CSS fall back to
+       prefers-color-scheme. -->
   <script>
     try {
       var t = localStorage.getItem("anviq-theme");
-      if (t) document.documentElement.setAttribute("data-theme", t);
+      if (t === "light" || t === "dark") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
     } catch (e) {}
   </script>
 
@@ -178,13 +183,35 @@
              own wrapper for the nav:flex show/hide. -->
         <div class="flex items-center gap-2">
 
-          <!-- Theme toggle. aria-label names the action it performs,
-               aria-pressed carries the state; both are updated in
-               initThemeToggle(). -->
-          <button id="theme-toggle" class="theme-toggle" type="button"
-                  aria-label="Switch to dark theme" aria-pressed="false">
-            <i data-lucide="moon" class="w-5 h-5"></i>
-          </button>
+          <!-- Theme menu: opens on hover for a mouse, and on click or
+               ArrowDown for touch and keyboard. -->
+          <div class="theme-menu" id="theme-menu">
+            <!-- Icon only. The accessible name carries the current
+                 choice and is refreshed in paint(). -->
+            <button type="button" class="theme-menu__trigger" id="theme-menu-trigger"
+                    aria-haspopup="true" aria-expanded="false" aria-controls="theme-menu-list"
+                    aria-label="Theme">
+              <span class="theme-menu__icon"></span>
+            </button>
+            <div class="theme-menu__list" id="theme-menu-list" role="menu"
+                 aria-label="Colour theme" hidden>
+              <button type="button" class="theme-menu__item" role="menuitemradio"
+                      data-theme-choice="light" aria-checked="false">
+                <i data-lucide="sun" class="w-4 h-4"></i><span>Light</span>
+                <i data-lucide="check" class="w-4 h-4 theme-menu__check"></i>
+              </button>
+              <button type="button" class="theme-menu__item" role="menuitemradio"
+                      data-theme-choice="dark" aria-checked="false">
+                <i data-lucide="moon" class="w-4 h-4"></i><span>Dark</span>
+                <i data-lucide="check" class="w-4 h-4 theme-menu__check"></i>
+              </button>
+              <button type="button" class="theme-menu__item" role="menuitemradio"
+                      data-theme-choice="system" aria-checked="false">
+                <i data-lucide="monitor" class="w-4 h-4"></i><span>System</span>
+                <i data-lucide="check" class="w-4 h-4 theme-menu__check"></i>
+              </button>
+            </div>
+          </div>
 
           <!-- CTA -->
           <div class="hidden nav:flex items-center gap-3">
@@ -225,7 +252,7 @@
          navbar on a 1080px-tall viewport — and the inner py cancelled
          out of that, so it could not be tuned. Height now follows the
          content, so the padding below is what controls the gap. -->
-    <section id="home" class="relative flex items-center overflow-hidden pt-16">
+    <section id="home" class="relative flex items-center overflow-hidden md:pt-16 pt-20">
 
       <!-- Soft background blobs -->
       <div class="hero-blob hero-blob-1" aria-hidden="true"></div>

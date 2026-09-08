@@ -42,58 +42,152 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- 4. Init Floating Scroll ---- */
   initFloatingScroll();
 
-  /* ---- 5. Init Theme Toggle ---- */
-  initThemeToggle();
+  /* ---- 5. Init Theme Menu ---- */
+  initThemeMenu();
 
 });
 
 
 /* ============================================================
-   Theme toggle — light / dark
+   Theme menu — light / dark / system
    A saved choice is already applied by the inline script in
-   <head>; this wires the control and keeps it in sync.
+   <head>; this wires the dropdown and keeps it in sync.
 ============================================================ */
-function initThemeToggle() {
-  const btn = document.getElementById('theme-toggle');
-  if (!btn) return;
+function initThemeMenu() {
+  const wrap = document.getElementById('theme-menu');
+  if (!wrap) return;
 
-  const root   = document.documentElement;
-  const osDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const trigger  = document.getElementById('theme-menu-trigger');
+  const list     = document.getElementById('theme-menu-list');
+  const items    = Array.from(list.querySelectorAll('[data-theme-choice]'));
+  const iconSlot = wrap.querySelector('.theme-menu__icon');
 
-  function storedTheme() {
-    try { return localStorage.getItem('anviq-theme'); } catch (e) { return null; }
+  const root = document.documentElement;
+  const KEY  = 'anviq-theme';
+  const META = {
+    light:  { icon: 'sun',     label: 'Light'  },
+    dark:   { icon: 'moon',    label: 'Dark'   },
+    system: { icon: 'monitor', label: 'System' }
+  };
+
+  /* Three states, and the CSS already distinguishes them:
+       light   -> data-theme="light", which beats an OS set to dark
+       dark    -> data-theme="dark",  which beats an OS set to light
+       system  -> no attribute, so prefers-color-scheme decides
+     "system" is therefore the absence of a stored value, not a
+     stored value of its own. */
+  function apply(choice) {
+    if (choice === 'system') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', choice);
+    }
+    try {
+      if (choice === 'system') localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, choice);
+    } catch (e) {}
   }
 
-  /* What the page is actually showing: an explicit choice wins,
-     otherwise the OS decides (the CSS is written the same way). */
-  function currentTheme() {
-    return root.getAttribute('data-theme') || (osDark.matches ? 'dark' : 'light');
+  function paint(choice) {
+    const meta = META[choice];
+    renderIcon(iconSlot, meta.icon);
+    /* The trigger shows no text, so the current choice has to reach
+       assistive tech through the accessible name (§12). */
+    trigger.setAttribute('aria-label', 'Theme: ' + meta.label);
+    items.forEach((item) => {
+      item.setAttribute('aria-checked', String(item.dataset.themeChoice === choice));
+    });
   }
 
-  function paint(theme) {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-    btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
-    renderIcon(btn, theme === 'dark' ? 'sun' : 'moon');
+  function storedChoice() {
+    let saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    /* Anything unrecognised — including a "system" left by an older
+       build — resolves to system and gets cleaned up by apply(). */
+    return saved === 'light' || saved === 'dark' ? saved : 'system';
   }
 
-  paint(currentTheme());
+  /* ---- open / close ---- */
+  let open = false;
 
-  btn.addEventListener('click', () => {
-    const next = currentTheme() === 'dark' ? 'light' : 'dark';
-    /* Always set the attribute, never remove it — an explicit light
-       choice has to beat an OS that says dark. */
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('anviq-theme', next); } catch (e) {}
-    paint(next);
+  function openMenu() {
+    open = true;
+    list.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu(returnFocus) {
+    open = false;
+    list.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    if (returnFocus) trigger.focus();
+  }
+
+  trigger.addEventListener('click', () => {
+    if (open) closeMenu(); else openMenu();
   });
 
-  /* With no explicit choice the CSS follows the OS, so the button
-     has to follow it too. */
-  osDark.addEventListener('change', () => {
-    if (!storedTheme()) paint(currentTheme());
+  /* Hover only where hovering is real. On a touch screen a tap can
+     synthesise mouseenter, which would open the menu and then let the
+     click close it again. */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    wrap.addEventListener('mouseenter', openMenu);
+    wrap.addEventListener('mouseleave', () => closeMenu());
+  }
+
+  /* Enter and Space already reach the click handler natively. */
+  trigger.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      openMenu();
+      items[0].focus();
+    }
   });
+
+  list.addEventListener('keydown', (e) => {
+    const at = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      items[(at + 1) % items.length].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      items[(at - 1 + items.length) % items.length].focus();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      items[0].focus();
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      items[items.length - 1].focus();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closeMenu(true);
+    } else if (e.key === 'Tab') {
+      closeMenu();
+    }
+  });
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      const choice = item.dataset.themeChoice;
+      apply(choice);
+      paint(choice);
+      closeMenu(true);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (open && !wrap.contains(e.target)) closeMenu();
+  });
+
+  const choice = storedChoice();
+  apply(choice);
+  paint(choice);
+  closeMenu();
+
+  /* No matchMedia listener for the theme itself: on "system" the CSS
+     tracks the OS on its own, and the trigger still reads "System". */
 }
+
 
 
 /* ============================================================
