@@ -3,18 +3,21 @@
 Static landing page for **AnvIQ Labs**: HTML5, Tailwind CSS via CDN, and
 vanilla JavaScript. No build step, no `package.json`, nothing to install.
 
-All copy is separated from the markup — `index.html` carries structure only,
-and every string lives in `js/data.js`.
+All copy is separated from the markup — `public/index.html` carries structure only,
+and every string lives in `public/js/data.js`.
 
 ---
 
 ## Project Structure
 
-`public/` is the entire deployable site; everything below is relative to it.
+`public/` is the entire deployable site — everything Firebase serves. Paths
+in this document are relative to the repo root.
 
 ```text
 AnvIQ Labs/
 │
+├── README.md            ← This file
+├── CLAUDE.md            ← Working notes and gotchas for contributors
 ├── firebase.json        ← Hosting config (serves `public/`)
 ├── deploy.sh            ← firebase deploy --only hosting
 │
@@ -86,9 +89,9 @@ also works, since every local path is relative.
 ## How to Edit Content
 
 To change **any text, link, or icon**, you do not need to touch
-`index.html`:
+`public/index.html`:
 
-1. Open `js/data.js`.
+1. Open `public/js/data.js`.
 2. Find the relevant section (`textContent`, `capabilities`, `industries`,
    `whyChooseUs`, …).
 3. Update the values. Icons are Lucide names, e.g. `icon: "brain-circuit"`.
@@ -97,11 +100,11 @@ To change **any text, link, or icon**, you do not need to touch
 Copy is inserted as HTML, so entities (`&mdash;`) and `<br />` work. Use
 `<br />` for a deliberate line break in a headline.
 
-Two things live in `index.html` instead:
+Two things live in `public/index.html` instead:
 
 - **Nav items** — the desktop and drawer link lists are hardcoded, so adding
   a section means editing `data.js` *and* both lists.
-- **The logo** — an `<img>` pointing at `assets/images/`, not a data string.
+- **The logo** — an `<img>` pointing at `public/assets/images/`, not a data string.
 
 ---
 
@@ -124,7 +127,7 @@ editing colours.
 
 ## Interactive UI Features
 
-- **Decoupled data architecture** — all copy in `js/data.js`, injected by a
+- **Decoupled data architecture** — all copy in `public/js/data.js`, injected by a
   small custom data-binding engine.
 - **Scroll animations** — hand-rolled `IntersectionObserver` in
   `animations.js` reveals `.reveal-element` nodes and animates the stat
@@ -147,20 +150,20 @@ The destination address comes from
 
 > **Known issue:** that value is currently `"anviq.ai"`, which is not a
 > valid email address, so the form and the contact link both go nowhere.
-> Set a real address in `js/data.js` before launch.
+> Set a real address in `public/js/data.js` before launch.
 
 ---
 
 ## Customisation
 
-- **Colours and theme** — the token blocks at the top of `css/styles.css`.
-  The `tailwind.config` block in `index.html` maps Tailwind's utility
+- **Colours and theme** — the token blocks at the top of `public/css/styles.css`.
+  The `tailwind.config` block in `public/index.html` maps Tailwind's utility
   classes onto those tokens; it is a guard rail, not the palette.
 - **Type and spacing** — both are clamped to the AnvIQ scales in the same
   `tailwind.config` block, so `text-lg` emits 16px and `p-5` emits 16px.
   Extend the config rather than writing one-off values.
 - **Hover and reveal effects** — component classes and `.reveal-element` in
-  `css/styles.css`.
+  `public/css/styles.css`.
 
 Design rules (tokens, type scale, spacing scale, accessibility) live in
 `.claude/skills/anviq-brand-guide/SKILL.md`. Read that before restyling.
