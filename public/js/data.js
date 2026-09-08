@@ -27,9 +27,9 @@ const siteData = {
       microStats: [
         { value: "55+", label: "AI Models Deployed" },
         { value: "10 TB+", label: "Data Processed" },
-        { value: "97.4%*", label: "Accuracy" }
+        { value: "97.4%", label: "Accuracy" }
       ],
-      accuracyNote: "*Outperforming industry baselines by 12% in domain-specific classification",
+      accuracyNote: "Outperforming industry baselines by 12% in domain-specific classification",
       platformTitle: "AnvIQ Intelligence Platform"
     },
     about: {
