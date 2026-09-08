@@ -1,14 +1,13 @@
 /**
  * navbar.js
  * Handles sticky navbar scroll effect and mobile hamburger menu toggle.
- * Depends on: utils.js (throttle)
+ * Depends on: utils.js (throttle, renderIcon) — must load before this file.
  */
 
 (function initNavbar() {
   const navbar       = document.getElementById('navbar');
   const mobileBtn    = document.getElementById('mobile-menu-btn');
   const mobileMenu   = document.getElementById('mobile-menu');
-  const menuIcon     = document.getElementById('menu-icon');
   let   menuOpen     = false;
 
   /* ---- Sticky / scrolled state ---- */
@@ -26,22 +25,20 @@
   onScroll(); // run once on load
 
   /* ---- Mobile menu toggle ---- */
+  /* Icon swaps go through renderIcon() (utils.js): Lucide replaces the
+     <i> it renders, so mutating a stored reference to it is a no-op. */
   function openMenu() {
     menuOpen = true;
     mobileMenu.classList.remove('hidden');
     mobileBtn.setAttribute('aria-expanded', 'true');
-    // Swap icon: menu → x
-    menuIcon.setAttribute('data-lucide', 'x');
-    lucide.createIcons({ el: menuIcon });
+    renderIcon(mobileBtn, 'x');
   }
 
   function closeMenu() {
     menuOpen = false;
     mobileMenu.classList.add('hidden');
     mobileBtn.setAttribute('aria-expanded', 'false');
-    // Swap icon: x → menu
-    menuIcon.setAttribute('data-lucide', 'menu');
-    lucide.createIcons({ el: menuIcon });
+    renderIcon(mobileBtn, 'menu');
   }
 
   mobileBtn.addEventListener('click', () => {

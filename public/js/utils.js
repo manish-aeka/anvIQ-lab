@@ -80,6 +80,31 @@ function smoothScrollTo(selector, offset = 80) {
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
+/* ---------- Icon rendering ---------- */
+/**
+ * Renders a single Lucide icon as the only child of `container`.
+ *
+ * Lucide's createIcons() builds an <svg> and calls
+ * parentNode.replaceChild(svg, element), so the original <i> leaves the
+ * document. Any reference captured beforehand is detached, and setting
+ * data-lucide on it changes nothing — which is why an icon swap has to
+ * re-render into the parent rather than mutate the icon element.
+ *
+ * The scan is scoped with `root`; that is the real option name, and
+ * passing anything else (`el`, say) is ignored and silently falls back
+ * to re-rendering every icon on the page.
+ *
+ * @param {HTMLElement} container - Element whose contents become the icon
+ * @param {string}      name      - Lucide icon name, e.g. 'menu'
+ * @param {string}      className - Classes applied to the icon
+ */
+function renderIcon(container, name, className) {
+  if (!container) return;
+  container.innerHTML =
+    '<i data-lucide="' + name + '" class="' + (className || 'w-5 h-5') + '"></i>';
+  if (window.lucide) lucide.createIcons({ root: container });
+}
+
 /* ---------- Form validation helpers ---------- */
 /**
  * Returns true if the string is a valid-looking email address.

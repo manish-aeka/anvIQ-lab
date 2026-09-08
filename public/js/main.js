@@ -1,7 +1,9 @@
 /* ============================================================
    Anviq Labs - Main JavaScript
    This file handles UI interactions, mobile menu, smooth scroll,
-   and contact form validation/submission.
+   theme toggle, and contact form validation/submission.
+   Depends on: utils.js (isNonEmpty, isValidEmail, showStatus,
+   throttle, renderIcon) — must load before this file.
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -72,12 +74,7 @@ function initThemeToggle() {
     const next = theme === 'dark' ? 'light' : 'dark';
     btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
-    /* Re-render through innerHTML rather than swapping the attribute:
-       Lucide replaces the <i> on first paint, so a kept reference is
-       detached by the time we want to change it. Same approach as
-       initFloatingScroll below. */
-    btn.innerHTML = '<i data-lucide="' + (theme === 'dark' ? 'sun' : 'moon') + '" class="w-5 h-5"></i>';
-    if (window.lucide) lucide.createIcons();
+    renderIcon(btn, theme === 'dark' ? 'sun' : 'moon');
   }
 
   paint(currentTheme());
@@ -174,8 +171,8 @@ function initContactForm() {
     setTimeout(() => {
       form.reset();
       submitBtn.disabled = false;
-      submitBtn.innerHTML = "Send Message <i data-lucide='send' class='w-4 h-4 group-hover:translate-x-1 transition-transform'></i>";
-      if (window.lucide) lucide.createIcons();
+      submitBtn.innerHTML = "Send Message <i data-lucide='send' class='w-4 h-4 group-hover:translate-x-0.5 transition-transform'></i>";
+      if (window.lucide) lucide.createIcons({ root: submitBtn });
     }, 2000);
 
   });
@@ -209,14 +206,12 @@ function initFloatingScroll() {
     // Toggle icon direction: If we are close to the bottom (80%), point UP. Else, point DOWN.
     if (scrollY >= maxScroll * 0.8) {
       if (!isPointingUp) {
-        scrollBtn.innerHTML = '<i data-lucide="arrow-up" id="scroll-icon" class="w-6 h-6"></i>';
-        if (window.lucide) lucide.createIcons();
+        renderIcon(scrollBtn, 'arrow-up', 'w-6 h-6');
         isPointingUp = true;
       }
     } else {
       if (isPointingUp) {
-        scrollBtn.innerHTML = '<i data-lucide="arrow-down" id="scroll-icon" class="w-6 h-6"></i>';
-        if (window.lucide) lucide.createIcons();
+        renderIcon(scrollBtn, 'arrow-down', 'w-6 h-6');
         isPointingUp = false;
       }
     }
