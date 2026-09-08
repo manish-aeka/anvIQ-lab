@@ -341,13 +341,17 @@ body {
 /* ============================================================
    NAVBAR
    ============================================================ */
-#navbar { background: transparent; }
+/* The bottom rule is always present, not just once navbar.js adds
+   .scrolled — that class only brings the surface and the blur. */
+#navbar {
+  background: transparent;
+  border-bottom: 1px solid var(--cds-border-subtle);
+}
 
 #navbar.scrolled {
   background: var(--anviq-nav-scrolled);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--cds-border-subtle);
 }
 
 /* Logo — light artwork on light surfaces, white on inverse (§11).
