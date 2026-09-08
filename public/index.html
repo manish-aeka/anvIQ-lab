@@ -206,13 +206,18 @@
   <main class="overflow-x-hidden">
 
     <!-- ========== HERO ========== -->
-    <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+    <!-- No min-h-screen: with items-center, a 100vh floor centred the
+         content in the leftover space and left a ~230px gap under the
+         navbar on a 1080px-tall viewport — and the inner py cancelled
+         out of that, so it could not be tuned. Height now follows the
+         content, so the padding below is what controls the gap. -->
+    <section id="home" class="relative flex items-center overflow-hidden pt-16">
 
       <!-- Soft background blobs -->
       <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
       <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pb-20 w-full">
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
 
           <!-- Left: Text -->
