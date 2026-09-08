@@ -107,11 +107,14 @@ function isNonEmpty(value) {
 function showStatus(el, message, type) {
   if (!el) return;
   el.textContent = message;
+  /* Styling lives in css/styles.css so the colours come from the
+     support tokens and carry a dark value. Replacing className is
+     also what clears the initial `hidden` class. */
   if (type === 'error') {
-    el.className = 'text-red-500 text-sm mt-2 font-medium block';
+    el.className = 'form-status form-status--error';
   } else if (type === 'success') {
-    el.className = 'text-green-500 text-sm mt-2 font-medium block';
+    el.className = 'form-status form-status--success';
   } else {
-    el.className = 'text-sm mt-2 font-medium';
+    el.className = 'form-status';
   }
 }

@@ -8,52 +8,114 @@
 
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
 
+  <!-- Theme — applied before the stylesheet so a saved choice never flashes -->
+  <script>
+    try {
+      var t = localStorage.getItem("anviq-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts — AnvIQ brand faces -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Vend+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Oldenburg&display=swap" />
 
-  <!-- Tailwind Config -->
+  <!-- Tailwind Config — AnvIQ brand guide
+       Every colour resolves to a token from css/styles.css, so the
+       utility classes in this document inherit both themes. Sizes,
+       weights, radius and spacing are clamped to the guide's scales:
+       a utility can no longer emit an off-scale value. -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif'],
+            sans:    ['Vend Sans', 'system-ui', 'sans-serif'],
+            display: ['Vend Sans', 'system-ui', 'sans-serif'],
+            mono:    ['JetBrains Mono', 'monospace'],
           },
+          /* Type scale — §4. No 11px, no 18px, no in-between rows. */
+          fontSize: {
+            xs:    '12px',   /* Label 01 / Code 01 */
+            sm:    '14px',   /* Body 01 / Heading 01 */
+            base:  '16px',   /* Body 02 / Heading 02 */
+            lg:    '16px',   /* was 18px — illegal */
+            xl:    '20px',   /* Heading 03 */
+            '2xl': '20px',   /* was 24px — illegal */
+            '3xl': '32px',   /* Heading 05 */
+          },
+          fontWeight: {
+            light:    '300',
+            normal:   '400',
+            medium:   '400',  /* 500 is not a scale weight */
+            semibold: '600',
+            bold:     '600',  /* 700 is not a scale weight */
+          },
+          /* One corner radius — §5. Circles stay circles. */
+          borderRadius: {
+            none: '0px', sm: '4px', DEFAULT: '4px', md: '4px',
+            lg: '4px', xl: '4px', '2xl': '4px', '3xl': '4px',
+            full: '9999px',
+          },
+          /* Spacing scale — §5. Only the off-scale keys are
+             overridden, and only for padding/margin/gap/space:
+             width and height keep Tailwind's steps so 20px icons
+             stay 20px (icon sizes are not spacing). */
+          padding: { 1.5: '4px', 2.5: '8px', 3.5: '12px', 5: '16px', 7: '24px', 14: '48px', 32: '96px' },
+          margin:  { 1.5: '4px', 2.5: '8px', 3.5: '12px', 5: '16px', 7: '24px', 14: '48px', 32: '96px' },
+          gap:     { 1.5: '4px', 2.5: '8px', 3.5: '12px', 5: '16px', 7: '24px', 14: '48px', 32: '96px' },
+          space:   { 1.5: '4px', 2.5: '8px', 3.5: '12px', 5: '16px', 7: '24px', 14: '48px', 32: '96px' },
           colors: {
-            /* Primary &mdash; blue */
+            /* Brand green */
             brand: {
-              50:  '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
+              50:  'var(--anviq-brand-wash)',
+              100: 'var(--anviq-tint)',
+              200: 'var(--cds-border-subtle)',
+              300: 'var(--cds-border-subtle)',
+              400: 'var(--anviq-brand-on-inverse)',
+              500: 'var(--cds-icon-primary)',
+              600: 'var(--cds-button-primary)',
+              700: 'var(--cds-button-primary-hover)',
+              800: 'var(--cds-button-primary-hover)',
+              900: 'var(--cds-text-primary)',
             },
-            /* Sky/cyan accent */
+            /* Gold accent — small rules and indicators only */
             sky: {
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
+              400: 'var(--anviq-accent)',
+              500: 'var(--anviq-accent)',
+              600: 'var(--anviq-accent)',
             },
-            /* Page surfaces */
             surface: {
-              50:  '#f8faff',
-              100: '#eef1fc',
-              200: '#e0e7ff',
+              50:  'var(--cds-layer-01)',
+              100: 'var(--cds-background)',
+              200: 'var(--cds-layer-02)',
             },
+            /* Neutrals fold onto the two text tokens and the
+               border tokens — the palette has no grey ramp. */
+            slate: {
+              100: 'var(--cds-border-subtle)',
+              200: 'var(--cds-border-subtle)',
+              300: 'var(--anviq-text-on-inverse)',
+              400: 'var(--cds-text-secondary)',
+              500: 'var(--cds-text-secondary)',
+              600: 'var(--cds-text-secondary)',
+              700: 'var(--cds-text-primary)',
+              800: 'var(--anviq-border-on-inverse)',
+              900: 'var(--cds-text-primary)',
+            },
+            /* Support states */
+            red:     { 400: 'var(--cds-support-error)',   500: 'var(--cds-support-error)' },
+            yellow:  { 400: 'var(--cds-support-warning)' },
+            green:   { 400: 'var(--cds-support-success)', 500: 'var(--cds-support-success)' },
+            emerald: { 500: 'var(--cds-support-success)' },
           },
           animation: {
             'float':       'float 7s ease-in-out infinite',
@@ -66,7 +128,12 @@
               '50%':       { transform: 'translateY(-12px)' },
             },
           },
+          /* Guide breakpoints — §5. 'nav' is this site's own
+             layout dimension for the desktop nav switch. */
           screens: {
+            'sm':  '760px',
+            'md':  '760px',
+            'lg':  '1056px',
             'nav': '1150px',
           },
         }
@@ -83,16 +150,15 @@
   <!-- ========== NAVBAR ========== -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" role="navigation" aria-label="Main navigation">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-[70px]">
+      <div class="flex items-center justify-between h-16">
 
-        <!-- Logo -->
-        <a href="#home" class="flex items-center gap-2.5 group" aria-label="AnvIQ Labs Home">
-          <div class="logo-mark">
-            <span data-bind="textContent.nav.logoMark"></span>
-          </div>
-          <span class="font-display font-semibold text-lg tracking-tight text-slate-900">
-            <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-600" data-bind="textContent.nav.logoP2"></span>
-          </span>
+        <!-- Logo — the light artwork on light surfaces, the white
+             variant on dark; swapped in CSS, never recoloured -->
+        <a href="#home" class="nav-logo flex items-center" aria-label="AnvIQ Labs Home">
+          <img src="./assets/images/anviq-logo.svg" alt="AnvIQ Labs"
+               class="site-logo site-logo--default" />
+          <img src="./assets/images/anviq-logo-white.svg" alt="AnvIQ Labs"
+               class="site-logo site-logo--inverse" />
         </a>
 
         <!-- Desktop Nav Links -->
@@ -120,7 +186,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden nav:hidden border-t border-slate-100 bg-white/98 backdrop-blur-xl shadow-lg" role="menu">
+    <div id="mobile-menu" class="hidden nav:hidden border-t border-slate-100" role="menu">
       <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
         <a href="#about"        class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.0.text"></a>
         <a href="#capabilities" class="mobile-nav-link" role="menuitem" data-bind="textContent.nav.links.1.text"></a>
@@ -161,7 +227,7 @@
             <!-- Hero Headline -->
             <h1 class="hero-headline">
               <span class="block mb-2" data-bind="textContent.hero.headlineP1"></span>
-              <span class="accent-text" data-bind="textContent.hero.headlineAccent"></span>
+              <span class="accent-text display-title" data-bind="textContent.hero.headlineAccent"></span>
               <span class="block mt-2" data-bind="textContent.hero.headlineP2"></span>
             </h1>
 
@@ -256,19 +322,19 @@
               <p class="text-xs text-slate-400 mt-3 uppercase tracking-widest">AnvIQ Labs &mdash; Mission Statement</p>
             </div>
             <div class="about-card text-center py-5 sm:py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">55+</div>
+              <div class="text-3xl font-mono font-normal text-slate-900 mb-1">55+</div>
               <div class="text-xs text-slate-500 uppercase tracking-widest">AI Models Deployed</div>
             </div>
             <div class="about-card text-center py-5 sm:py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">10 TB+</div>
+              <div class="text-3xl font-mono font-normal text-slate-900 mb-1">10 TB+</div>
               <div class="text-xs text-slate-500 uppercase tracking-widest">Data Processed</div>
             </div>
             <div class="about-card text-center py-5 sm:py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">97.4%</div>
+              <div class="text-3xl font-mono font-normal text-slate-900 mb-1">97.4%</div>
               <div class="text-xs text-slate-500 uppercase tracking-widest">Model Accuracy</div>
             </div>
             <div class="about-card text-center py-5 sm:py-7">
-              <div class="text-3xl font-display font-bold text-slate-900 mb-1">&lt;50ms</div>
+              <div class="text-3xl font-mono font-normal text-slate-900 mb-1">&lt;50ms</div>
               <div class="text-xs text-slate-500 uppercase tracking-widest">Avg Latency</div>
             </div>
           </div>
@@ -402,7 +468,7 @@
             <span class="w-5 h-px bg-sky-500"></span>
             <span>Security &amp; Compliance</span>
           </div>
-          <h3 class="text-2xl font-display font-semibold text-slate-900 mb-2">Enterprise-Grade Security Protocols</h3>
+          <h3 class="text-2xl font-display font-normal text-slate-900 mb-2">Enterprise-Grade Security Protocols</h3>
           <p class="text-sm text-slate-500 max-w-2xl mx-auto">We prioritize data sovereignty and security throughout the AI development lifecycle</p>
         </div>
         
@@ -618,20 +684,18 @@
   </main>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-slate-900 pt-10 pb-6 sm:pt-14 sm:pb-8">
+  <footer class="site-footer pt-10 pb-6 sm:pt-14 sm:pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
         <!-- Brand -->
         <div class="lg:col-span-2">
-          <div class="flex items-center gap-2.5 mb-5">
-            <div class="logo-mark"><span data-bind="textContent.nav.logoMark"></span></div>
-            <span class="font-display font-semibold text-lg text-white">
-              <span data-bind="textContent.nav.logoP1"></span> <span class="text-brand-400" data-bind="textContent.nav.logoP2"></span>
-            </span>
+          <div class="flex items-center mb-5">
+            <img src="./assets/images/anviq-logo-white.svg" alt="AnvIQ Labs"
+                 class="site-logo" />
           </div>
-          <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-6" data-bind="textContent.footer.description"></p>
+          <p class="text-sm leading-relaxed max-w-xs mb-6" data-bind="textContent.footer.description"></p>
           <div class="flex items-center gap-2.5" id="footer-social-container">
             <!-- Social links dynamically rendered here -->
           </div>
@@ -656,8 +720,8 @@
       </div>
 
       <!-- Bottom bar -->
-      <div class="border-t border-slate-800 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-slate-500 text-sm" data-bind="textContent.footer.copyright"></p>
+      <div class="footer-divider pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm" data-bind="textContent.footer.copyright"></p>
         <div class="flex items-center gap-6" id="footer-legal-container">
           <!-- Legal links dynamically rendered here -->
         </div>
@@ -667,7 +731,7 @@
   </footer>
 
     <!-- Floating Scroll Button -->
-  <button id="floating-scroll-btn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 md:bottom-8 md:right-8 opacity-0 pointer-events-none" aria-label="Toggle Scroll">
+  <button id="floating-scroll-btn" class="fixed bottom-6 right-6 z-50 p-3 hover:-translate-y-1 transition-all duration-300 md:bottom-8 md:right-8 opacity-0 pointer-events-none" aria-label="Toggle Scroll">
     <i data-lucide="arrow-down" id="scroll-icon" class="w-6 h-6"></i>
   </button>
 
@@ -681,4 +745,5 @@
 
 
 
-  
+  </body>
+</html>

@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerLegalContainer = document.getElementById("footer-legal-container");
   if (footerLegalContainer && siteData.textContent.footer.legalLinks) {
     footerLegalContainer.innerHTML = siteData.textContent.footer.legalLinks.map(link => `
-      <a href="${link.href}" class="text-slate-500 hover:text-slate-300 text-sm transition-colors">${link.text}</a>
+      <a href="${link.href}" class="footer-link">${link.text}</a>
     `).join("");
   }
 

@@ -82,7 +82,7 @@ const siteData = {
       btnPrimary: "Send Message",
       info: {
         email: "anviq.ai",
-        location: "Bengaluru, India",
+        location: "No. 8, G & M Floor, Embassy Star, Palace Cross Road, Vasanth Nagar, Bengaluru - 560 052",
         responseTime: "Within 24 hours",
         socialLinks: [
           { href: "#", icon: "linkedin", label: "LinkedIn" },
